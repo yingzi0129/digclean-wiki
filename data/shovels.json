@@ -1,0 +1,72 @@
+{
+  "lastUpdated": "2026-08-06",
+  "confidence": "Dig & Clean does not publish a full public shovel catalog. Only the starter shovel and early upgrade targets are confirmed from community gameplay. The detailed 30+ shovel lists online belong to a different game (DIG).",
+  "byStage": [
+    {
+      "stage": "Just Started",
+      "shovel": "Starter Shovel",
+      "why": "Free starting tool. Good enough for beach junk and common items.",
+      "confidence": "Official"
+    },
+    {
+      "stage": "Early Game",
+      "shovel": "Amethyst Shovel",
+      "why": "Strong early upgrade target once you can afford it on Starter Island.",
+      "confidence": "Community estimate"
+    },
+    {
+      "stage": "Mid Game",
+      "shovel": "Diamond Shovel",
+      "why": "Solid balance of power and price for rare finds on Shipwreck Cove.",
+      "confidence": "Community estimate"
+    },
+    {
+      "stage": "Late Game",
+      "shovel": "Cobalt / Titanium Shovel",
+      "why": "Best power for legendary spots and deep digs on the second island.",
+      "confidence": "Community estimate"
+    }
+  ],
+  "shovels": [
+    {
+      "name": "Starter Shovel",
+      "speed": 2,
+      "power": 2,
+      "price": 0,
+      "bestFor": "Beginners",
+      "confidence": "Official"
+    },
+    {
+      "name": "Amethyst Shovel",
+      "speed": 3,
+      "power": 4,
+      "price": 2500,
+      "bestFor": "Early farming",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Diamond Shovel",
+      "speed": 4,
+      "power": 5,
+      "price": 25000,
+      "bestFor": "Rare item hunting",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Cobalt Shovel",
+      "speed": 4,
+      "power": 6,
+      "price": 125000,
+      "bestFor": "Legendary spots",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Titanium Shovel",
+      "speed": 5,
+      "power": 6,
+      "price": 500000,
+      "bestFor": "Endgame grinding",
+      "confidence": "Community estimate"
+    }
+  ]
+}

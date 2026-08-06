@@ -1,0 +1,96 @@
+{
+  "lastUpdated": "2026-08-06",
+  "confidence": "Items catalog is not officially published. Known item families are confirmed by the game's Roblox description; individual names and values are community-reported or unverified.",
+  "items": [
+    {
+      "id": "dirty-junk",
+      "name": "Dirty Junk",
+      "rarity": "Junk",
+      "value": 5,
+      "recommendation": "Sell",
+      "location": "Starter Island",
+      "description": "The most common buried find. Spray clean to reveal if it is worth anything.",
+      "confidence": "Official"
+    },
+    {
+      "id": "rusted-can",
+      "name": "Rusted Can",
+      "rarity": "Junk",
+      "value": 12,
+      "recommendation": "Sell",
+      "location": "Starter Island",
+      "description": "Common junk found on the beach. Clean and sell for quick cash.",
+      "confidence": "Community estimate"
+    },
+    {
+      "id": "broken-bottle",
+      "name": "Broken Bottle",
+      "rarity": "Junk",
+      "value": 18,
+      "recommendation": "Sell",
+      "location": "Starter Island",
+      "description": "Not worth much, but easy to find everywhere.",
+      "confidence": "Community estimate"
+    },
+    {
+      "id": "sand-dollar",
+      "name": "Sand Dollar",
+      "rarity": "Common",
+      "value": 45,
+      "recommendation": "Keep",
+      "location": "Starter Island",
+      "description": "A clean beach keepsake for new collectors.",
+      "confidence": "Community estimate"
+    },
+    {
+      "id": "seaglass-shard",
+      "name": "Seaglass Shard",
+      "rarity": "Common",
+      "value": 52,
+      "recommendation": "Sell",
+      "location": "Starter Island",
+      "description": "Pretty, but common along the shore.",
+      "confidence": "Community estimate"
+    },
+    {
+      "id": "old-compass",
+      "name": "Old Compass",
+      "rarity": "Uncommon",
+      "value": 120,
+      "recommendation": "Keep",
+      "location": "Shipwreck Cove",
+      "description": "Points toward better treasure. Worth keeping for the museum.",
+      "confidence": "Community estimate"
+    },
+    {
+      "id": "silver-locket",
+      "name": "Silver Locket",
+      "rarity": "Rare",
+      "value": 350,
+      "recommendation": "Keep",
+      "location": "Shipwreck Cove",
+      "description": "A rare personal item. Great museum piece.",
+      "confidence": "Community estimate"
+    },
+    {
+      "id": "golden-goblet",
+      "name": "Golden Goblet",
+      "rarity": "Epic",
+      "value": 1200,
+      "recommendation": "Keep",
+      "location": "Shipwreck Cove",
+      "description": "High value and rare. Definitely keep for the museum.",
+      "confidence": "Community estimate"
+    },
+    {
+      "id": "ancient-idol",
+      "name": "Ancient Idol",
+      "rarity": "Legendary",
+      "value": 5000,
+      "recommendation": "Keep",
+      "location": "Shipwreck Cove",
+      "description": "One of the rarest finds in Dig & Clean. Endgame trophy item.",
+      "confidence": "Community estimate"
+    }
+  ]
+}

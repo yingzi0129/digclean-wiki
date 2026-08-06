@@ -1,27 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --sand: #E8DCC8;
+  --water: #4FA8C6;
+  --dirt: #8B6F4E;
+  --foam: #F7F9FB;
+  --gold: #D4A843;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-sand text-dirt font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline text-dirt;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .card-shadow {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
 }
