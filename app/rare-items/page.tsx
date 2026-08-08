@@ -41,7 +41,7 @@ export default function RareItemsPage() {
                 <tr key={item.id}>
                   <td className="p-4 font-medium text-dirt">{item.name}</td>
                   <td className="p-4"><RarityBadge rarity={item.rarity} /></td>
-                  <td className="p-4 font-headline font-bold text-gold text-right">{item.value.toLocaleString()}</td>
+                  <td className="p-4 font-headline font-bold text-gold text-right">{item.value.toLocaleString("en-US")}</td>
                   <td className="p-4 text-dirt/80">{item.location}</td>
                   <td className="p-4 text-sm text-dirt/80">{item.recommendation === "Keep" ? "Strong display piece" : "Sell unless duplicate slot"}</td>
                 </tr>

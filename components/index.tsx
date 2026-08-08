@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import type { Item } from "@/types";
+import { JsonLd } from "./JsonLd";
 
 export function RarityBadge({ rarity }: { rarity: string }) {
   const map: Record<string, string> = {
@@ -51,7 +52,7 @@ export function ItemTable({ items }: { items: Item[] }) {
             <tr key={item.id} className={`hover:bg-dirt/5 transition-colors ${idx % 2 === 1 ? "bg-white/30" : ""}`}>
               <td className="p-4 font-medium text-dirt">{item.name}</td>
               <td className="p-4"><RarityBadge rarity={item.rarity} /></td>
-              <td className="p-4 font-headline text-right font-bold text-gold">{item.value.toLocaleString()}</td>
+              <td className="p-4 font-headline text-right font-bold text-gold">{item.value.toLocaleString("en-US")}</td>
               <td className="p-4 text-center"><RecBadge rec={item.recommendation} /></td>
               <td className="p-4 text-sm text-dirt/80">{item.location}</td>
             </tr>
@@ -72,7 +73,7 @@ export function ItemCard({ item }: { item: Item }) {
           <RarityBadge rarity={item.rarity} />
         </div>
         <div className="flex items-center gap-3 text-sm mb-2">
-          <span className="text-gold font-bold flex items-center gap-1">${item.value.toLocaleString()}</span>
+          <span className="text-gold font-bold flex items-center gap-1">${item.value.toLocaleString("en-US")}</span>
           <RecBadge rec={item.recommendation} />
         </div>
         <div className="text-xs text-dirt/70 flex items-center gap-1">{item.location}</div>
@@ -247,8 +248,23 @@ export function FAQ() {
     { q: "Can I play Dig & Clean on mobile?", a: "Yes. Dig & Clean is available on Roblox across PC, mobile, and console. See our Controls page for platform-specific tips." },
     { q: "Where do you get your item values?", a: "We compile values from community testing and cross-check with other players. Values may change as the game updates. Individual item names and values are estimates where the official catalog has not been published." },
   ];
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <div className="space-y-6">
+      <JsonLd data={schema} />
       <h2 className="font-headline font-bold text-3xl text-dirt text-center">Frequently Asked Questions</h2>
       <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         {faqs.map((f) => (

@@ -68,7 +68,7 @@ export default function ShovelsPage() {
                   <td className="p-4 font-medium text-dirt">{s.name}</td>
                   <td className="p-4 text-dirt/80">{s.speed}/5</td>
                   <td className="p-4 text-dirt/80">{s.power}/5</td>
-                  <td className="p-4 font-headline font-bold text-gold">{s.price.toLocaleString()}</td>
+                  <td className="p-4 font-headline font-bold text-gold">{s.price.toLocaleString("en-US")}</td>
                   <td className="p-4 text-dirt/80">{s.bestFor}</td>
                   <td className="p-4 text-xs text-dirt/60">{s.confidence}</td>
                 </tr>

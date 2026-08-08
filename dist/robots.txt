@@ -1,0 +1,25 @@
+# *
+User-agent: *
+Allow: /
+
+# GPTBot
+User-agent: GPTBot
+Allow: /
+
+# ClaudeBot
+User-agent: ClaudeBot
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# Google-Extended
+User-agent: Google-Extended
+Allow: /
+
+# Host
+Host: https://digclean-wiki.wiki
+
+# Sitemaps
+Sitemap: https://digclean-wiki.wiki/sitemap.xml
