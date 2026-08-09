@@ -48,8 +48,12 @@ function TopNav() {
     { href: "/items/", label: "Items" },
     { href: "/codes/", label: "Codes" },
     { href: "/shovels/", label: "Shovels" },
+    { href: "/sprays/", label: "Sprays" },
     { href: "/farming/", label: "Farming" },
+    { href: "/cleaning/", label: "Cleaning" },
+    { href: "/museum/", label: "Museum" },
     { href: "/beginner/", label: "Beginner" },
+    { href: "/updates/", label: "Updates" },
   ];
   return (
     <header className="bg-foam border-b border-dirt/10 sticky top-0 z-50 shadow-sm">

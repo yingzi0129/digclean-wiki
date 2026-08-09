@@ -1,13 +1,14 @@
 import { Metadata } from "next";
-import { RelatedLinks } from "@/components";
+import { LastUpdated, RelatedLinks } from "@/components";
+import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
 
 const related = [
   { href: "/", label: "Home" },
   { href: "/items/", label: "Items" },
-  { href: "/rare-items/", label: "Rare Items" },
-  { href: "/farming/", label: "Farming" },
+  { href: "/cleaning/", label: "Cleaning" },
   { href: "/shovels/", label: "Shovels" },
+  { href: "/farming/", label: "Farming" },
 ];
 
 const breadcrumbSchema = {
@@ -19,9 +20,36 @@ const breadcrumbSchema = {
   ],
 };
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to build and organize your Dig & Clean museum",
+  description: "Learn how the Dig & Clean museum works, which items to donate, and how to balance collection goals with Gold income.",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Unlock the museum",
+      text: "Progress through the beginner tutorial until the museum area becomes available.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Donate your first Rare or Epic item",
+      text: "Museum slots are limited early on, so prioritize the highest rarity items you find.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Sell duplicates and low-value junk",
+      text: "Use common and uncommon duplicates to fund shovel, detector, and spray upgrades.",
+    },
+  ],
+};
+
 export const metadata: Metadata = {
-  title: "Dig & Clean Museum Guide: Donations, Bonuses & Best Items",
-  description: "Learn how the Dig & Clean museum works, which items to donate, and how to maximize your passive income from visitors.",
+  title: "Dig & Clean Museum Guide: Donate, Display & Collect",
+  description: "Learn how the Dig & Clean museum works, which items to donate, and how to balance your collection with Gold income.",
   alternates: { canonical: "https://digclean-wiki.wiki/museum/" },
 };
 
@@ -29,105 +57,58 @@ export default function MuseumPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={howToSchema} />
 
       <div className="max-w-3xl">
         <h1 className="font-headline font-extrabold text-4xl md:text-5xl text-dirt leading-tight">
           Dig & Clean Museum Guide
         </h1>
+        <LastUpdated date={itemsData.lastUpdated} note="Museum mechanics are based on verified gameplay and the official Roblox description." />
         <p className="text-lg text-dirt/80 mt-4">
-          The museum is one of the most important parts of Dig & Clean. The official Roblox description says the goal is to &ldquo;show off your best finds in your own museum.&rdquo; Donated items earn passive income from visitors and help you unlock more progression. This guide explains what to donate, how to optimize slots, and which items are worth keeping for display.
+          The museum is the long-term goal that keeps Dig & Clean interesting after your first farming loop. Instead of selling every find, you donate your best discoveries to build a personal display collection. This guide explains how the museum works, which items are worth keeping, and how to balance donations with the Gold you need for upgrades.
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
           <h2 className="font-headline font-bold text-2xl text-dirt mb-4">How the Museum Works</h2>
-          <ul className="list-disc list-inside text-dirt/80 space-y-2">
-            <li>Find the museum building near the spawn area or Workstation.</li>
-            <li>Open the donation menu and select a clean item from your inventory.</li>
-            <li>Each donated item fills a slot and earns visitor coins over time.</li>
-            <li>Higher-rarity and higher-value items usually give more visitor income.</li>
-            <li>Some slots are locked behind progress or spending coins; upgrade when you can afford it.</li>
-          </ul>
-        </div>
-        <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-          <h2 className="font-headline font-bold text-2xl text-dirt mb-4">What to Donate</h2>
-          <ul className="list-disc list-inside text-dirt/80 space-y-2">
-            <li><strong>Keep first:</strong> Rare, Epic, and Legendary items.</li>
-            <li><strong>Replace duplicates:</strong> A higher-value version of the same item often gives more income than the lower-value one.</li>
-            <li><strong>Never donate:</strong> Junk or Common items unless you need to fill the very first slot and have nothing else.</li>
-            <li><strong>Save items:</strong> If a museum slot is locked, hold the rare item in your inventory until you unlock the slot.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-          <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Museum Slot Upgrade Order</h2>
-          <p className="text-dirt/80 mb-4">
-            Unlocking new museum slots costs coins. The best strategy is to unlock only when you already have a high-value item waiting to fill the slot. An empty slot earns nothing, so opening slots before you have displays is usually a waste of early income.
+          <p className="text-dirt/80 leading-relaxed">
+            After you clean a find, you can sell it at the shop for Gold or carry it to the museum donation stand. Donated items appear on display shelves and count toward your collection progress. Some games of this type reward completion badges or bonus income for full sets, so it is usually worth saving one copy of each unique find.
           </p>
-          <ol className="list-decimal list-inside text-dirt/80 space-y-2">
-            <li><strong>Fill free slots first.</strong> Donate your best Rare, Epic, or Legendary items before spending coins on more slots.</li>
-            <li><strong>Unlock the next slot only when you have a replacement ready.</strong> This keeps every slot earning immediately.</li>
-            <li><strong>Prioritize rarity over value.</strong> A high-rarity item with lower sell value may earn more passive visitor income than a high-sell-value Common item.</li>
-            <li><strong>Revisit after moving to Shipwreck Cove.</strong> New legendary drops often replace older Rare displays, so keep swapping up.</li>
-          </ol>
+          <p className="text-dirt/80 leading-relaxed mt-4">
+            Museum slots are limited early on. You want to fill them with the rarest items you own, because common junk takes up the same space as a legendary artifact.
+          </p>
         </div>
         <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-          <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Best Items to Display Early</h2>
-          <p className="text-dirt/80 mb-4">
-            Early players cannot reach legendary spots yet. Focus on items that are easy to find but still better than Junk or Common. Replace them as soon as you find higher-rarity items.
-          </p>
+          <h2 className="font-headline font-bold text-2xl text-dirt mb-4">What to Donate vs Sell</h2>
           <ul className="list-disc list-inside text-dirt/80 space-y-2">
-            <li><strong>Uncommon:</strong> Good first displays while you save for better gear.</li>
-            <li><strong>Rare:</strong> The first income milestone. Start replacing Uncommons with these.</li>
-            <li><strong>Epic:</strong> Strong mid-game displays, worth donating even over some legendaries if you have duplicates.</li>
-            <li><strong>Legendary:</strong> Endgame displays. Always donate the first copy unless you urgently need the sell price for a shovel.</li>
+            <li><strong>Legendary / Epic:</strong> Almost always donate the first copy.</li>
+            <li><strong>Rare:</strong> Donate one, sell duplicates.</li>
+            <li><strong>Uncommon:</strong> Sell unless you are close to a set bonus.</li>
+            <li><strong>Common / Junk:</strong> Sell for immediate Gold.</li>
+            <li><strong>Duplicates:</strong> Keep only if the item has sentimental or set value.</li>
           </ul>
         </div>
       </div>
 
       <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Museum Tips</h2>
-        <ul className="list-disc list-inside text-dirt/80 space-y-2">
-          <li>Donate your best item as soon as you unlock the next slot.</li>
-          <li>Compare sell value to expected visitor income. Rare items often beat selling in the long run.</li>
-          <li>Use museum income to buy your next detector upgrade before you leave an island.</li>
-          <li>Keep rare items even if they look dirty; you must clean them before donating.</li>
-          <li>Sort by museum value in the item database to find the best candidates.</li>
-        </ul>
+        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Best Museum Strategy by Stage</h2>
+        <ol className="list-decimal list-inside text-dirt/80 space-y-3">
+          <li><strong>Starter Beach:</strong> Sell almost everything. You need Gold for the first shovel upgrades.</li>
+          <li><strong>Mid Game:</strong> Start saving one copy of each Rare find. Sell the rest to fund travel.</li>
+          <li><strong>Late Game:</strong> Target full Epic and Legendary sets at Shipwreck Cove. Sell only duplicates.</li>
+          <li><strong>End Game:</strong> Reorganize displays by theme or rarity and chase missing legendary pieces.</li>
+        </ol>
       </div>
 
       <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Frequently Asked Questions</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <h4 className="font-headline font-bold text-lg text-dirt mb-2">Do I lose items when I donate them?</h4>
-            <p className="text-sm text-dirt/80">Yes. The item is removed from your inventory and placed on display. Plan to keep one copy of your rarest finds.</p>
-          </div>
-          <div className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <h4 className="font-headline font-bold text-lg text-dirt mb-2">Can I take items back?</h4>
-            <p className="text-sm text-dirt/80">This depends on the current game version. In most cases, museum donations are permanent. Check the in-game menu before confirming.</p>
-          </div>
-          <div className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <h4 className="font-headline font-bold text-lg text-dirt mb-2">What is the best museum item?</h4>
-            <p className="text-sm text-dirt/80">Legendary items are generally the best displays. Epic and Rare items are strong for early players who cannot yet reach legendaries.</p>
-          </div>
-          <div className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <h4 className="font-headline font-bold text-lg text-dirt mb-2">Does museum income stack with boosts?</h4>
-            <p className="text-sm text-dirt/80">Income may be affected by game passes such as 2x Gold. Specific mechanics are community-estimated; verify in-game.</p>
-          </div>
-        </div>
+        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Farming for the Museum</h2>
+        <p className="text-dirt/80 leading-relaxed">
+          Legendary items spawn most often at Shipwreck Cove, but only if your detector luck and shovel power are high enough. For efficient routes, read the <a href="/farming/" className="text-water hover:underline">Farming guide</a>. If you need exact item values, use the <a href="/items/" className="text-water hover:underline">Item Database</a> to compare sell price against collection value.
+        </p>
       </div>
 
       <RelatedLinks links={related} />
-
-      <div className="text-center">
-        <a href="/items/" className="inline-flex items-center gap-2 bg-water text-white font-headline font-bold px-6 py-3 rounded-xl hover:bg-water/90 transition-colors">
-          Browse items to donate
-        </a>
-      </div>
     </div>
   );
 }

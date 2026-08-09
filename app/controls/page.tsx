@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 
 const related = [
   { href: "/", label: "Home" },
-  { href: "/beginner/", label: "Beginner Guide" },
+  { href: "/beginner/", label: "Beginner" },
   { href: "/items/", label: "Items" },
   { href: "/shovels/", label: "Shovels" },
   { href: "/farming/", label: "Farming" },

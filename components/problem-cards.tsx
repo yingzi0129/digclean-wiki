@@ -1,13 +1,15 @@
 "use client";
 
-import { BookOpen, Coins, Gem, Rocket, Ticket } from "lucide-react";
+import { BookOpen, Coins, Gem, Rocket, SprayCan, Ticket, Newspaper } from "lucide-react";
 
 const cards = [
   { href: "/beginner/", icon: BookOpen, title: "I'm new", desc: "Learn the core loop, controls, and what to focus on first." },
   { href: "/farming/", icon: Coins, title: "I want money", desc: "Fast farming loops for starter and Shipwreck Cove stages." },
   { href: "/shovels/", icon: Rocket, title: "Best shovel", desc: "Compare power, speed, and price to pick your next upgrade." },
+  { href: "/sprays/", icon: SprayCan, title: "Best spray", desc: "Find the right spray bottle for faster cleaning and revealing." },
   { href: "/codes/", icon: Ticket, title: "Active codes", desc: "Check verified codes, redemption steps, and where to watch." },
   { href: "/rare-items/", icon: Gem, title: "Rare items", desc: "Find legendary drops and decide whether to sell or donate." },
+  { href: "/updates/", icon: Newspaper, title: "Latest updates", desc: "New codes, item changes, and official event tracking." },
 ];
 
 export function ProblemCards() {
@@ -17,7 +19,7 @@ export function ProblemCards() {
         <h2 className="font-headline font-bold text-3xl text-dirt">What do you need help with?</h2>
         <p className="text-dirt/70 mt-2">Pick your goal and get straight to the answer.</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((c) => (
           <a
             key={c.href}

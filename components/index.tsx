@@ -39,7 +39,7 @@ export function ConfidenceBadge({ label }: { label: string }) {
 
 export function LastUpdated({ date, note }: { date: string; note?: string }) {
   return (
-    <p className="text-xs text-dirt/60 mb-2">Last updated: {date}{note ? ` · ${note}` : ""}</p>
+    <p className="text-xs text-dirt/60 mt-3">Last updated: {date}{note ? ` · ${note}` : ""}</p>
   );
 }
 

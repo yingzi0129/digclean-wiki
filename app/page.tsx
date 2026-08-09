@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight, Search, Ticket, Shovel } from "lucide-react";
+import { ArrowRight, Search, Ticket, Shovel, Gem, BookOpen, Coins, Newspaper, ChevronRight } from "lucide-react";
 import { ItemDatabase, YouTube, HowToPlay, FAQ } from "@/components";
 import itemsData from "@/data/items.json";
 import { JsonLd, websiteSchema, videoGameSchema, organizationSchema } from "@/components/JsonLd";
@@ -8,6 +8,22 @@ import { HeroTools } from "@/components/hero-tools";
 import { ProblemCards } from "@/components/problem-cards";
 import { ResourceCards } from "@/components/resource-cards";
 import Link from "next/link";
+
+const quickPaths = [
+  { href: "/beginner/", icon: BookOpen, label: "I'm new" },
+  { href: "/farming/", icon: Coins, label: "I want money" },
+  { href: "/shovels/", icon: Shovel, label: "Best gear" },
+  { href: "/codes/", icon: Ticket, label: "Active codes" },
+  { href: "/rare-items/", icon: Gem, label: "Rare items" },
+];
+
+const latestUpdates = [
+  { title: "Codes checked: no active codes", date: "Aug 9, 2026", href: "/codes/" },
+  { title: "Item database refreshed for August 2026", date: "Aug 9, 2026", href: "/items/" },
+  { title: "Farming guide expanded to 1,333 words", date: "Aug 9, 2026", href: "/farming/" },
+  { title: "New Cleaning and Sprays sections live", date: "Aug 9, 2026", href: "/cleaning/" },
+  { title: "Museum guide now available", date: "Aug 9, 2026", href: "/museum/" },
+];
 
 export const metadata: Metadata = {
   title: "Dig & Clean Wiki — Item Database, Codes & Best Gear",
@@ -84,7 +100,61 @@ export default function Home() {
 
       <HeroTools />
 
+      {/* 快速入口：按问题选工具 */}
+      <section className="space-y-4">
+        <div className="text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-dirt/60 mb-2">Quick start</p>
+          <h2 className="font-headline font-bold text-2xl md:text-3xl text-dirt">Choose your next step</h2>
+        </div>
+        <div className="flex flex-wrap justify-center gap-3">
+          {quickPaths.map((p) => (
+            <Link
+              key={p.href}
+              href={p.href}
+              className="inline-flex items-center gap-2 bg-white border border-dirt/20 hover:border-water hover:bg-water/5 text-dirt font-medium px-5 py-2.5 rounded-full transition-colors"
+            >
+              <p.icon className="w-4 h-4 text-water" />
+              {p.label}
+              <ChevronRight className="w-4 h-4 text-dirt/40" />
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <ProblemCards />
+
+      {/* Latest updates 折叠列表 */}
+      <section className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20 space-y-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-water/10 text-water flex items-center justify-center">
+              <Newspaper className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="font-headline font-bold text-2xl text-dirt">Latest updates</h2>
+              <p className="text-sm text-dirt/70">New codes, item changes, and official event tracking.</p>
+            </div>
+          </div>
+          <Link href="/updates/" className="hidden sm:inline-flex items-center gap-1 text-water font-medium hover:underline">
+            View all updates <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+        <div className="divide-y divide-dirt/10">
+          {latestUpdates.map((u) => (
+            <Link
+              key={u.href + u.title}
+              href={u.href}
+              className="flex items-center justify-between py-3 hover:bg-white/40 px-2 -mx-2 rounded-lg transition-colors"
+            >
+              <span className="font-medium text-dirt">{u.title}</span>
+              <span className="text-sm text-dirt/50 whitespace-nowrap">{u.date}</span>
+            </Link>
+          ))}
+        </div>
+        <Link href="/updates/" className="sm:hidden w-full text-center inline-flex items-center justify-center gap-1 text-water font-medium hover:underline">
+          View all updates <ChevronRight className="w-4 h-4" />
+        </Link>
+      </section>
 
       <section className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 divide-x-0 md:divide-x-2 divide-y-2 md:divide-y-0 divide-dirt/10">
