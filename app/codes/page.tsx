@@ -3,13 +3,14 @@ import type { CodeRow } from "@/types";
 import codesData from "@/data/codes.json";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedLinks } from "@/components";
+import { CheckCircle, AlertTriangle, Search, RefreshCw, ExternalLink } from "lucide-react";
 
 const related = [
-  { href: "/", label: "Home" },
-  { href: "/items/", label: "Items" },
-  { href: "/shovels/", label: "Shovels" },
-  { href: "/farming/", label: "Farming" },
+  { href: "/items/", label: "Item Database" },
+  { href: "/shovels/", label: "Best Shovels" },
+  { href: "/farming/", label: "Money Farming" },
   { href: "/beginner/", label: "Beginner Guide" },
+  { href: "/rare-items/", label: "Rare Items" },
 ];
 
 const breadcrumbSchema = {
@@ -34,9 +35,19 @@ const howToSchema = {
   })),
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: codesData.faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export const metadata: Metadata = {
   title: "Dig & Clean Codes (August 2026) — Rewards & How to Redeem",
-  description: "All active Dig & Clean codes in one place. Updated daily. No working codes? We tell you where to watch for the next drop, plus exact redemption steps and common fake-code warnings.",
+  description: "All active Dig & Clean codes in one place. Checked regularly. No working codes right now? We tell you exactly where to watch for the next drop, how to redeem, and which fake-code sites to avoid.",
   alternates: { canonical: "https://digclean-wiki.wiki/codes/" },
 };
 
@@ -45,12 +56,16 @@ export default function CodesPage() {
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={howToSchema} />
+      <JsonLd data={faqSchema} />
 
       <div className="max-w-3xl">
         <h1 className="font-headline font-extrabold text-4xl md:text-5xl text-dirt leading-tight">
           Dig & Clean Codes (August 2026)
         </h1>
-        <p className="text-xs text-dirt/60 mt-2">Last updated: {codesData.lastUpdated} · Checked regularly against the official Roblox page and Squeaky Clean! group.</p>
+        <p className="text-xs text-dirt/60 mt-2 flex items-center gap-1.5">
+          <RefreshCw className="w-3 h-3" />
+          Last checked: {codesData.lastUpdated} · We verify against official sources before listing anything.
+        </p>
         <p className="text-lg text-dirt/80 mt-4">
           Looking for active Dig & Clean codes? This page lists every verified working code, the reward, and exactly how to redeem it. If no codes are active right now, we also show the safest places to watch for the next drop and the fake-code traps to avoid.
         </p>
@@ -103,6 +118,16 @@ export default function CodesPage() {
       </div>
 
       <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
+        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Why Are There No Active Codes Right Now?</h2>
+        <p className="text-dirt/80 leading-relaxed mb-4">
+          Dig & Clean is still in its early release period. Many Roblox simulation games launch without a public code-redemption system and add it after the first major update, a visits milestone, or a holiday event. The Squeaky Clean! developers have not yet published a code menu or announced a code campaign, so any code claiming to be "active" right now is unverified.
+        </p>
+        <p className="text-dirt/80 leading-relaxed">
+          We check the official sources listed below regularly. As soon as a working code is confirmed, we add it to the active table with the exact reward and the date it was verified. Expired codes are moved to the expired list so you can see what used to work.
+        </p>
+      </div>
+
+      <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
         <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Expired Codes</h2>
         {codesData.expired.length > 0 ? (
           <div className="overflow-x-auto">
@@ -137,25 +162,46 @@ export default function CodesPage() {
             <li key={step}>{step}</li>
           ))}
         </ol>
-        <p className="text-sm text-dirt/60 mt-4">Codes are case-sensitive. Copy and paste to avoid typos.</p>
+        <p className="text-sm text-dirt/60 mt-4">Codes are case-sensitive. Copy and paste to avoid typos. If the game does not show a Codes button, the redemption feature has not been enabled yet.</p>
       </div>
 
-      <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Where to Find New Codes</h2>
-        <ul className="list-disc list-inside text-dirt/80 space-y-2">
-          {codesData.whereToWatch.map((source: string) => (
-            <li key={source}>{source}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Watch Out for Fake Code Sites</h2>
-        <ul className="list-disc list-inside text-dirt/80 space-y-2">
-          {codesData.warnings.map((warning: string) => (
-            <li key={warning}>{warning}</li>
-          ))}
-        </ul>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
+          <h2 className="font-headline font-bold text-2xl text-dirt mb-4 flex items-center gap-2">
+            <Search className="w-6 h-6 text-water" />
+            Where to Find New Codes
+          </h2>
+          <ul className="list-disc list-inside text-dirt/80 space-y-2">
+            {codesData.whereToWatch.map((source: string) => (
+              <li key={source}>{source}</li>
+            ))}
+          </ul>
+          <div className="mt-4 space-y-2">
+            {codesData.sources.map((s) => (
+              <a
+                key={s.url}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-water hover:underline"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                {s.name}
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
+          <h2 className="font-headline font-bold text-2xl text-dirt mb-4 flex items-center gap-2">
+            <AlertTriangle className="w-6 h-6 text-status-sell" />
+            Watch Out for Fake Code Sites
+          </h2>
+          <ul className="list-disc list-inside text-dirt/80 space-y-2">
+            {codesData.warnings.map((warning: string) => (
+              <li key={warning}>{warning}</li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
@@ -170,13 +216,22 @@ export default function CodesPage() {
         </div>
       </div>
 
-      <RelatedLinks links={related} />
-
-      <div className="text-center">
-        <a href="/items/" className="inline-flex items-center gap-2 bg-water text-white font-headline font-bold px-6 py-3 rounded-xl hover:bg-water/90 transition-colors">
-          Back to the full item database
-        </a>
+      <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
+        <h2 className="font-headline font-bold text-2xl text-dirt mb-4">What to Do While You Wait</h2>
+        <p className="text-dirt/80 leading-relaxed mb-4">
+          Codes are helpful, but they are not the only way to speed up progress. The fastest early-game gold comes from the <a href="/farming/" className="text-water hover:underline">Starter Beach farming loop</a>, and the best long-term investment is upgrading your <a href="/shovels/" className="text-water hover:underline">shovel and detector</a> in the right order. If you are new, start with the <a href="/beginner/" className="text-water hover:underline">Beginner Guide</a> to learn the core loop.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a href="/farming/" className="inline-flex items-center gap-2 bg-water text-white font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-water/90 transition-colors">
+            <Coins className="w-4 h-4" /> Money farming
+          </a>
+          <a href="/shovels/" className="inline-flex items-center gap-2 bg-white border border-dirt/20 text-dirt font-semibold text-sm px-5 py-2.5 rounded-lg hover:border-water/50 transition-colors">
+            <CheckCircle className="w-4 h-4" /> Best shovels
+          </a>
+        </div>
       </div>
+
+      <RelatedLinks links={related} />
     </div>
   );
 }

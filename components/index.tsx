@@ -245,38 +245,7 @@ export function YouTube({ videoId, title }: { videoId: string; title: string }) 
   );
 }
 
-export function ResourceCards() {
-  const cards = [
-    { href: "/codes/", icon: "ticket", title: "Active Codes", desc: "See every active Dig & Clean code, plus where to watch for the next drop." },
-    { href: "/shovels/", icon: "shovel", title: "Best Shovels", desc: "Compare shovels by power, walk speed, and price. Find the right pick for your stage." },
-    { href: "/farming/", icon: "coins", title: "Money Farming", desc: "The best spots and loops to make money fast, no matter your shovel level." },
-    { href: "/beginner/", icon: "book", title: "Beginner Guide", desc: "New to Dig & Clean? Learn the controls, the loop, and what to focus on first." },
-  ];
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {cards.map((c) => (
-        <a key={c.href} href={c.href} className="group bg-foam rounded-xl p-6 card-shadow border border-dirt/20 hover:border-water/50 hover:-translate-y-1 transition-all flex flex-col items-start gap-4">
-          <div className="w-12 h-12 rounded-lg bg-water/10 text-water flex items-center justify-center group-hover:bg-water group-hover:text-white transition-colors">
-            <Icon name={c.icon} />
-          </div>
-          <div>
-            <h3 className="font-headline font-bold text-xl text-dirt mb-2">{c.title}</h3>
-            <p className="text-dirt/70 text-sm">{c.desc}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-  );
-}
-
-function Icon({ name }: { name: string }) {
-  if (name === "ticket") return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 7v4h18V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M3 11v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6"/><path d="M9 14h6"/></svg>;
-  if (name === "shovel") return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 22l-2-2 6-6-6-6 2-2 8 8-8 8z"/></svg>;
-  if (name === "coins") return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12"/><path d="M9 10h6"/><path d="M9 14h6"/></svg>;
-  return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>;
-}
-
-export function HowToPlay() {
+export function YouTube({ videoId, title }: { videoId: string; title: string }) {
   const steps = [
     { icon: "radar", title: "Detect", text: "Use your detector to find buried items under the sand." },
     { icon: "dig", title: "Dig", text: "Equip a shovel and dig where the signal is strongest." },
@@ -314,7 +283,7 @@ export function FAQ() {
     { q: "What is the best shovel in Dig & Clean?", a: "The best shovel depends on your stage and budget. Early players should focus on affordable options with decent power, while late-game players can invest in higher power shovels like Ruby, Carbon, or Diamond. Check our Shovels page for stage-by-stage picks." },
     { q: "How do I redeem Dig & Clean codes?", a: "Open the game, look for the codes button or menu, enter the code exactly as shown, and confirm. Visit our Codes page for the latest active codes and step-by-step help." },
     { q: "Should I sell or keep my items?", a: "Keep rare, epic, and legendary items for your museum display. Sell common junk and duplicates to fund your next shovel upgrade." },
-    { q: "How often is this site updated?", a: "We check active codes daily. Items, shovels, and game stats are updated after major game updates or at least weekly." },
+    { q: "How often is this site updated?", a: "We check active codes and game data regularly. Items, shovels, and stats are updated after major game updates or at least weekly." },
     { q: "Can I play Dig & Clean on mobile?", a: "Yes. Dig & Clean is available on Roblox across PC, mobile, and console. See our Controls page for platform-specific tips." },
     { q: "Where do you get your item values?", a: "We compile values from community testing and cross-check with other players. Values may change as the game updates. Individual item names and values are estimates where the official catalog has not been published." },
   ];

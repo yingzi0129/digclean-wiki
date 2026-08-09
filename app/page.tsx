@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { ItemDatabase, YouTube, ResourceCards, HowToPlay, FAQ } from "@/components";
+import { ItemDatabase, YouTube, HowToPlay, FAQ } from "@/components";
 import itemsData from "@/data/items.json";
 import { JsonLd, websiteSchema, videoGameSchema, organizationSchema } from "@/components/JsonLd";
+import { HeroTools } from "@/components/hero-tools";
+import { ProblemCards } from "@/components/problem-cards";
+import { ResourceCards } from "@/components/resource-cards";
 
 export const metadata: Metadata = {
   title: "Dig & Clean Wiki — Item Database, Codes & Best Gear",
@@ -21,22 +24,15 @@ export default function Home() {
       <JsonLd data={websiteSchema} />
       <JsonLd data={videoGameSchema} />
       <JsonLd data={organizationSchema} />
+
       <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
           <h1 className="font-headline font-extrabold text-4xl md:text-5xl lg:text-6xl text-dirt leading-tight tracking-tight">
             Dig & Clean Wiki — Your Toolbox for Items, Codes & Shovels
           </h1>
           <p className="text-lg md:text-xl text-dirt/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            No more scrolling through long articles. Search every Dig & Clean item, check active codes, and find the best shovel for your stage in one place.
+            No more scrolling through long articles. Search items, check active codes, and find your next shovel upgrade in one place.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a href="#database" className="inline-flex justify-center items-center gap-2 bg-water text-white font-headline font-bold text-lg px-8 py-4 rounded-xl hover:bg-water/90 hover:-translate-y-0.5 transition-all active:scale-95 shadow-lg shadow-water/20">
-              Open Item Database
-            </a>
-            <a href="/codes/" className="inline-flex justify-center items-center gap-2 bg-transparent border-2 border-water text-water font-headline font-bold text-lg px-8 py-4 rounded-xl hover:bg-water/10 hover:-translate-y-0.5 transition-all active:scale-95">
-              Check Codes
-            </a>
-          </div>
           <p className="text-xs text-dirt/60">This is an unofficial fan site. Not affiliated with Roblox or Dig & Clean.</p>
         </div>
         <div className="flex-1 w-full relative group">
@@ -51,6 +47,10 @@ export default function Home() {
           />
         </div>
       </section>
+
+      <HeroTools />
+
+      <ProblemCards />
 
       <section className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 divide-x-0 md:divide-x-2 divide-y-2 md:divide-y-0 divide-dirt/10">
@@ -71,7 +71,7 @@ export default function Home() {
             <p className="font-headline font-bold text-3xl text-dirt">1.2M</p>
           </div>
         </div>
-        <p className="text-center text-xs text-dirt/50 mt-4">Stats updated weekly from public Roblox game data.</p>
+        <p className="text-center text-xs text-dirt/50 mt-4">Stats checked regularly from public Roblox game data.</p>
       </section>
 
       <section className="space-y-6 flex flex-col items-center">
