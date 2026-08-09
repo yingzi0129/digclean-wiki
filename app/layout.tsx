@@ -1,7 +1,6 @@
 // Build timestamp: force new favicon deploy
 import type { Metadata } from "next";
 import "./globals.css";
-import { JsonLd, websiteSchema, videoGameSchema, organizationSchema } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: {
@@ -34,25 +33,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        {/* Privacy-friendly analytics by Plausible */}
-        <script async src="https://plausible.shipsolo.io/js/pa-afrjKs3Jsu6TvGq-PQpdU.js"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`,
-          }}
-        />
-        {/* Microsoft Clarity */}
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window, document, "clarity", "script", "xygimic557");`,
-          }}
-        />
-        <JsonLd data={websiteSchema} />
-        <JsonLd data={videoGameSchema} />
-        <JsonLd data={organizationSchema} />
-      </head>
       <body className="min-h-screen flex flex-col">
         <TopNav />
         <main className="flex-1">{children}</main>
@@ -69,7 +49,7 @@ function TopNav() {
     { href: "/codes/", label: "Codes" },
     { href: "/shovels/", label: "Shovels" },
     { href: "/farming/", label: "Farming" },
-    { href: "/beginner-guide/", label: "Beginner" },
+    { href: "/beginner/", label: "Beginner" },
   ];
   return (
     <header className="bg-foam border-b border-dirt/10 sticky top-0 z-50 shadow-sm">

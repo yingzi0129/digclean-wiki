@@ -2,17 +2,15 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { ItemDatabase, YouTube, ResourceCards, HowToPlay, FAQ } from "@/components";
 import itemsData from "@/data/items.json";
+import { JsonLd, websiteSchema, videoGameSchema, organizationSchema } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Dig & Clean Wiki (Roblox) — Item Database, Codes & Best Gear",
-  description: "Find every Roblox Dig & Clean item, value, rarity, and keep-or-sell tip in our interactive database. Plus active codes and the best shovel for your stage.",
+  title: "Dig & Clean Wiki — Item Database, Codes & Best Gear",
+  description: "Find every Dig & Clean item, value, rarity, and keep-or-sell tip in our interactive database. Plus active codes and the best shovel for your stage.",
   alternates: { canonical: "https://digclean-wiki.wiki/" },
-  verification: {
-    google: "h-crmjn5pyrXUJYDuG06csVS8uEuNKR6_w_tVQy85ec",
-  },
   openGraph: {
-    title: "Dig & Clean Wiki (Roblox) — Item Database, Codes & Best Gear",
-    description: "Search Roblox Dig & Clean items by rarity and value. Check active codes and find the best shovel for your stage.",
+    title: "Dig & Clean Wiki — Item Database, Codes & Best Gear",
+    description: "Search Dig & Clean items by rarity and value. Check active codes and find the best shovel for your stage.",
     images: ["/og-image.png"],
   },
 };
@@ -20,13 +18,16 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 pt-12 pb-8 flex flex-col gap-16 md:gap-24">
+      <JsonLd data={websiteSchema} />
+      <JsonLd data={videoGameSchema} />
+      <JsonLd data={organizationSchema} />
       <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
           <h1 className="font-headline font-extrabold text-4xl md:text-5xl lg:text-6xl text-dirt leading-tight tracking-tight">
-            Dig & Clean Wiki (Roblox) — Your Toolbox for Items, Codes & Shovels
+            Dig & Clean Wiki — Your Toolbox for Items, Codes & Shovels
           </h1>
           <p className="text-lg md:text-xl text-dirt/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            Dig & Clean is a Roblox treasure-hunting game where you detect, dig, clean, and display buried loot. Search every Roblox Dig & Clean item, check active codes, and find the best shovel for your stage — all in one fan-made wiki.
+            No more scrolling through long articles. Search every Dig & Clean item, check active codes, and find the best shovel for your stage in one place.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a href="#database" className="inline-flex justify-center items-center gap-2 bg-water text-white font-headline font-bold text-lg px-8 py-4 rounded-xl hover:bg-water/90 hover:-translate-y-0.5 transition-all active:scale-95 shadow-lg shadow-water/20">
@@ -71,63 +72,6 @@ export default function Home() {
           </div>
         </div>
         <p className="text-center text-xs text-dirt/50 mt-4">Stats updated weekly from public Roblox game data.</p>
-      </section>
-
-      <section className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-        <h2 className="font-headline font-bold text-2xl md:text-3xl text-dirt mb-4">What is Dig & Clean?</h2>
-        <p className="text-dirt/80 leading-relaxed">
-          Dig & Clean is a sandbox treasure-hunting game on Roblox. You spawn on a sandy island, grab a detector,
-          locate hidden objects, dig them up with a shovel, and wash off the dirt at a cleaning station.
-          Rare finds go to your personal museum; common junk and duplicates are sold for coins to fund better gear.
-          The loop is simple — detect, dig, clean, display — but the right items and shovels can make you rich fast.
-        </p>
-        <p className="text-dirt/60 text-sm mt-4">
-          This wiki is unofficial and fan-run. Data comes from public Roblox stats and community testing.
-        </p>
-      </section>
-
-      <section className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-        <h2 className="font-headline font-bold text-2xl md:text-3xl text-dirt mb-6 text-center">Get Started in 5 Steps</h2>
-        <ol className="grid md:grid-cols-5 gap-4 list-decimal list-inside">
-          <li className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <strong className="text-dirt block mb-1">Join the game</strong>
-            <span className="text-sm text-dirt/70">Load Dig & Clean on Roblox and complete the intro.</span>
-          </li>
-          <li className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <strong className="text-dirt block mb-1">Equip your detector</strong>
-            <span className="text-sm text-dirt/70">Walk the beach until the signal peaks.</span>
-          </li>
-          <li className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <strong className="text-dirt block mb-1">Dig it up</strong>
-            <span className="text-sm text-dirt/70">Switch to your shovel and dig at the glowing spot.</span>
-          </li>
-          <li className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <strong className="text-dirt block mb-1">Clean & decide</strong>
-            <span className="text-sm text-dirt/70">Spray the item, then sell or keep for your museum.</span>
-          </li>
-          <li className="bg-white/50 rounded-xl p-4 border border-dirt/10">
-            <strong className="text-dirt block mb-1">Upgrade gear</strong>
-            <span className="text-sm text-dirt/70">Reinvest coins into a better shovel and detector.</span>
-          </li>
-        </ol>
-      </section>
-
-      <section className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
-        <h2 className="font-headline font-bold text-2xl md:text-3xl text-dirt mb-4">Latest Updates</h2>
-        <ul className="space-y-3 text-dirt/80">
-          <li className="flex gap-3">
-            <span className="text-water font-bold whitespace-nowrap">Aug 6, 2026</span>
-            <span>Wiki launched with full item database, codes page, shovel guide, and farming tips.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="text-water font-bold whitespace-nowrap">Aug 6, 2026</span>
-            <span>Added controls and beginner-guide pages for new players.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="text-water font-bold whitespace-nowrap">Ongoing</span>
-            <span>Item values and active codes are checked daily against the official Roblox page and community sources.</span>
-          </li>
-        </ul>
       </section>
 
       <section className="space-y-6 flex flex-col items-center">

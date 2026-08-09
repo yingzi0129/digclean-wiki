@@ -1,6 +1,56 @@
 {
-  "lastUpdated": "2026-08-06",
+  "lastUpdated": "2026-08-09",
   "active": [],
   "expired": [],
-  "note": "No verified active or expired codes have been published by the official Dig & Clean Roblox page or the Squeaky Clean! group as of August 6, 2026. We check daily."
+  "note": "As of August 8, 2026, no verified Dig & Clean redeem codes have been published by the official Roblox game page or the Squeaky Clean! developer group. We check the official sources regularly and update this section immediately when a working code appears.",
+  "sources": [
+    {
+      "name": "Official Dig & Clean Roblox page",
+      "url": "https://www.roblox.com/games/83038462357724/Dig-Clean"
+    },
+    {
+      "name": "Squeaky Clean! Roblox group",
+      "url": "https://www.roblox.com/communities/679586291/Squeaky-Clean"
+    }
+  ],
+  "howToRedeem": [
+    "Launch Dig & Clean on Roblox.",
+    "Look for a Codes button on the main screen or inside the Settings/Menu icon.",
+    "Type or paste the code exactly as published (codes are usually case-sensitive).",
+    "Tap or click the Redeem/Confirm button.",
+    "Check your inventory, currency, or notification feed for the reward."
+  ],
+  "whereToWatch": [
+    "The official Dig & Clean Roblox experience description and update banners.",
+    "The Squeaky Clean! Roblox group shout and community posts.",
+    "Verified Dig & Clean YouTube creators and Twitch streamers after major updates.",
+    "This wiki page — we refresh it regularly and add a timestamp for every check."
+  ],
+  "warnings": [
+    "There is no separate Dig & Clean code redemption website. Never enter your Roblox password on third-party 'code generator' sites.",
+    "Codes from different games like DIG, Dig It, or Dig All Dinos will not work in Dig & Clean.",
+    "We do not list codes from script/exploit forums because they are usually fake or unsafe."
+  ],
+  "faq": [
+    {
+      "q": "Are there any active Dig & Clean codes right now?",
+      "a": "No verified active codes as of August 8, 2026. The game is still in its early release period and has not added a public code redemption menu."
+    },
+    {
+      "q": "When will Dig & Clean codes be released?",
+      "a": "Roblox simulation games usually add codes after the first major update or when the game hits a visits/likes milestone. We monitor the official channels regularly and update this page as soon as codes appear."
+    },
+    {
+      "q": "How do I redeem a code in Dig & Clean?",
+      "a": "Open the game, find the Codes button or Settings menu, paste the code exactly, and press Confirm. If there is no Codes button, the feature has not been enabled yet."
+    },
+    {
+      "q": "Do codes give free shovels or coins?",
+      "a": "When Dig & Clean adds codes, rewards will likely be coins or small boosts. We will list the exact reward for every confirmed code."
+    },
+    {
+      "q": "Can I use codes from DIG or Dig It in Dig & Clean?",
+      "a": "No. DIG and Dig It are different games. Only codes published specifically for Dig & Clean by Squeaky Clean! will work."
+    }
+  ]
 }

@@ -1,71 +1,203 @@
 {
-  "lastUpdated": "2026-08-06",
-  "confidence": "Dig & Clean does not publish a full public shovel catalog. Only the starter shovel and early upgrade targets are confirmed from community gameplay. The detailed 30+ shovel lists online belong to a different game (DIG).",
+  "lastUpdated": "2026-08-09",
+  "confidence": "The starter Plastic Shovel, Rusty Detector, and Basic Spray Bottle are confirmed free starting gear by the official Roblox description and community guides. All other costs and stats are community-reported estimates from Sportskeeda and All Things How (Aug 6, 2026). Live shop prices may differ; verify in-game before buying.",
   "byStage": [
     {
       "stage": "Just Started",
-      "shovel": "Starter Shovel",
-      "why": "Free starting tool. Good enough for beach junk and common items.",
+      "shovel": "Plastic Shovel / Starter Shovel",
+      "why": "Free starting tool. Use it to learn the dig meter and farm beach junk and common items.",
       "confidence": "Official"
     },
     {
       "stage": "Early Game",
       "shovel": "Amethyst Shovel",
-      "why": "Strong early upgrade target once you can afford it on Starter Island.",
+      "why": "Strong community-reported starter-island target: 9 Power and 25% Walk Speed (190,000 Gold estimate).",
       "confidence": "Community estimate"
     },
     {
       "stage": "Mid Game",
-      "shovel": "Diamond Shovel",
-      "why": "Solid balance of power and price for rare finds on Shipwreck Cove.",
+      "shovel": "Diamond / Cobalt / Titanium Shovel",
+      "why": "Higher Power and Walk Speed for Shipwreck Cove rare and legendary spots. Pick based on budget.",
       "confidence": "Community estimate"
     },
     {
       "stage": "Late Game",
-      "shovel": "Cobalt / Titanium Shovel",
-      "why": "Best power for legendary spots and deep digs on the second island.",
+      "shovel": "Diamond / Ruby / Carbon Shovel",
+      "why": "Highest Power and Walk Speed for endgame legendary farming (community-reported stats up to 40 Power).",
       "confidence": "Community estimate"
     }
   ],
   "shovels": [
     {
-      "name": "Starter Shovel",
-      "speed": 2,
-      "power": 2,
+      "name": "Plastic Shovel",
+      "power": 1,
+      "walkSpeed": 0,
       "price": 0,
-      "bestFor": "Beginners",
+      "bestFor": "Beginners — free starter",
       "confidence": "Official"
     },
     {
-      "name": "Amethyst Shovel",
-      "speed": 3,
-      "power": 4,
-      "price": 2500,
+      "name": "Wood Shovel",
+      "power": 2,
+      "walkSpeed": 5,
+      "price": 500,
+      "bestFor": "First upgrade from beach junk",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Stone Shovel",
+      "power": 3,
+      "walkSpeed": 10,
+      "price": 1600,
       "bestFor": "Early farming",
       "confidence": "Community estimate"
     },
     {
-      "name": "Diamond Shovel",
-      "speed": 4,
+      "name": "Metal Shovel",
       "power": 5,
-      "price": 25000,
-      "bestFor": "Rare item hunting",
+      "walkSpeed": 15,
+      "price": 9000,
+      "bestFor": "Mid starter island",
       "confidence": "Community estimate"
     },
     {
-      "name": "Cobalt Shovel",
-      "speed": 4,
-      "power": 6,
-      "price": 125000,
-      "bestFor": "Legendary spots",
+      "name": "Gold Shovel",
+      "power": 7,
+      "walkSpeed": 20,
+      "price": 45000,
+      "bestFor": "Rare item hunting on starter island",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Amethyst Shovel",
+      "power": 9,
+      "walkSpeed": 25,
+      "price": 190000,
+      "bestFor": "Best starter-island shovel target",
       "confidence": "Community estimate"
     },
     {
       "name": "Titanium Shovel",
-      "speed": 5,
-      "power": 6,
-      "price": 500000,
-      "bestFor": "Endgame grinding",
+      "power": 14,
+      "walkSpeed": 30,
+      "price": 390000,
+      "bestFor": "Shipwreck Cove entry",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Cobalt Shovel",
+      "power": 17,
+      "walkSpeed": 35,
+      "price": 650000,
+      "bestFor": "Mid Shipwreck Cove legendary spots",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Carbon Shovel",
+      "power": 21,
+      "walkSpeed": 40,
+      "price": 1300000,
+      "bestFor": "Late Shipwreck Cove",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Ruby Shovel",
+      "power": 26,
+      "walkSpeed": 45,
+      "price": 2900000,
+      "bestFor": "Endgame legendary farming",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Diamond Shovel",
+      "power": 40,
+      "walkSpeed": 50,
+      "price": 9200000,
+      "bestFor": "Maximum endgame power",
+      "confidence": "Community estimate"
+    }
+  ],
+  "detectors": [
+    {
+      "name": "Rusty Detector",
+      "luck": "x1",
+      "range": 7,
+      "price": 0,
+      "bestFor": "Starter only",
+      "confidence": "Official"
+    },
+    {
+      "name": "Copper Detector",
+      "luck": "x3",
+      "range": 7.5,
+      "price": 500,
+      "bestFor": "Early luck boost",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Silver Detector",
+      "luck": "x5",
+      "range": 8,
+      "price": 5000,
+      "bestFor": "Mid starter island",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Gold Detector",
+      "luck": "x8",
+      "range": 8.5,
+      "price": 28000,
+      "bestFor": "Rare hunting on starter island",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Platinum Detector",
+      "luck": "x12",
+      "range": 9,
+      "price": 140000,
+      "bestFor": "Best starter-island detector target",
+      "confidence": "Community estimate"
+    }
+  ],
+  "sprays": [
+    {
+      "name": "Basic Spray Bottle",
+      "power": 34,
+      "range": 22,
+      "price": 0,
+      "bestFor": "Starter only",
+      "confidence": "Official"
+    },
+    {
+      "name": "Rubber Spray Bottle",
+      "power": 43,
+      "range": 24,
+      "price": 900,
+      "bestFor": "Early cleaning upgrade",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Plastic Spray Bottle",
+      "power": 57,
+      "range": 26,
+      "price": 5500,
+      "bestFor": "Mid starter island",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Copper Spray Bottle",
+      "power": 71,
+      "range": 28,
+      "price": 26000,
+      "bestFor": "Faster cleaning before Shipwreck Cove",
+      "confidence": "Community estimate"
+    },
+    {
+      "name": "Steel Spray Bottle",
+      "power": 85,
+      "range": 30,
+      "price": 100000,
+      "bestFor": "Shipwreck Cove entry",
       "confidence": "Community estimate"
     }
   ]

@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { useMemo, useState, Fragment } from "react";
+import { Search, ChevronDown, ChevronUp } from "lucide-react";
 import type { Item } from "@/types";
 import { JsonLd } from "./JsonLd";
 
@@ -28,13 +28,35 @@ export function RecBadge({ rec }: { rec: string }) {
   return <span className="inline-block px-3 py-1 rounded text-xs font-bold bg-status-sell/10 text-status-sell">SELL</span>;
 }
 
+export function ConfidenceBadge({ label }: { label: string }) {
+  const isOfficial = label.toLowerCase().includes("official");
+  return (
+    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium border ${isOfficial ? "bg-water/10 text-water border-water/30" : "bg-dirt/10 text-dirt/70 border-dirt/20"}`}>
+      {label}
+    </span>
+  );
+}
+
 export function LastUpdated({ date, note }: { date: string; note?: string }) {
   return (
     <p className="text-xs text-dirt/60 mb-2">Last updated: {date}{note ? ` · ${note}` : ""}</p>
   );
 }
 
+function ItemDetail({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-2 py-2 border-b border-dirt/10 last:border-b-0">
+      <span className="text-xs font-semibold uppercase tracking-wider text-dirt/60">{label}</span>
+      <div className="text-sm text-dirt/80">{children}</div>
+    </div>
+  );
+}
+
 export function ItemTable({ items }: { items: Item[] }) {
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+
+  const toggle = (id: string) => setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[600px] text-left border-collapse">
@@ -45,17 +67,49 @@ export function ItemTable({ items }: { items: Item[] }) {
             <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold text-right">Value</th>
             <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold text-center">Recommendation</th>
             <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Location</th>
+            <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold text-center">Details</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-dirt/5">
           {items.map((item, idx) => (
-            <tr key={item.id} className={`hover:bg-dirt/5 transition-colors ${idx % 2 === 1 ? "bg-white/30" : ""}`}>
-              <td className="p-4 font-medium text-dirt">{item.name}</td>
-              <td className="p-4"><RarityBadge rarity={item.rarity} /></td>
-              <td className="p-4 font-headline text-right font-bold text-gold">{item.value.toLocaleString("en-US")}</td>
-              <td className="p-4 text-center"><RecBadge rec={item.recommendation} /></td>
-              <td className="p-4 text-sm text-dirt/80">{item.location}</td>
-            </tr>
+            <Fragment key={item.id}>
+              <tr className={`hover:bg-dirt/5 transition-colors ${idx % 2 === 1 ? "bg-white/30" : ""}`}>
+                <td className="p-4 font-medium text-dirt">{item.name}</td>
+                <td className="p-4"><RarityBadge rarity={item.rarity} /></td>
+                <td className="p-4 font-headline text-right font-bold text-gold">{item.value.toLocaleString("en-US")}</td>
+                <td className="p-4 text-center"><RecBadge rec={item.recommendation} /></td>
+                <td className="p-4 text-sm text-dirt/80">{item.location}</td>
+                <td className="p-4 text-center">
+                  <button
+                    onClick={() => toggle(item.id)}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-water hover:text-water/80 transition-colors"
+                    type="button"
+                    aria-expanded={expanded[item.id]}
+                    aria-controls={`details-${item.id}`}
+                  >
+                    {expanded[item.id] ? (
+                      <><ChevronUp className="w-4 h-4" /> Less</>
+                    ) : (
+                      <><ChevronDown className="w-4 h-4" /> More</>
+                    )}
+                  </button>
+                </td>
+              </tr>
+              {expanded[item.id] && (
+                <tr id={`details-${item.id}`} className="bg-sand/30">
+                  <td colSpan={6} className="p-4">
+                    <div className="max-w-3xl">
+                      <ItemDetail label="Sell Price">{item.sellPrice.toLocaleString("en-US")} Gold</ItemDetail>
+                      <ItemDetail label="Museum Value">{item.museumValue}</ItemDetail>
+                      <ItemDetail label="Location">{item.location}</ItemDetail>
+                      <ItemDetail label="Description">{item.description}</ItemDetail>
+                      <ItemDetail label="Keep / Sell Reason">{item.keepReason}</ItemDetail>
+                      <ItemDetail label="Confidence"><ConfidenceBadge label={item.confidence} /></ItemDetail>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </Fragment>
           ))}
         </tbody>
       </table>
@@ -64,6 +118,7 @@ export function ItemTable({ items }: { items: Item[] }) {
 }
 
 export function ItemCard({ item }: { item: Item }) {
+  const [open, setOpen] = useState(false);
   return (
     <div className="bg-foam rounded-xl p-4 border border-dirt/20 card-shadow hover:-translate-y-1 transition-transform cursor-pointer relative overflow-hidden group">
       <div className={`absolute top-0 right-0 w-16 h-16 rounded-bl-full z-0 opacity-30 bg-rarity-${item.rarity.toLowerCase()}`}></div>
@@ -76,7 +131,22 @@ export function ItemCard({ item }: { item: Item }) {
           <span className="text-gold font-bold flex items-center gap-1">${item.value.toLocaleString("en-US")}</span>
           <RecBadge rec={item.recommendation} />
         </div>
-        <div className="text-xs text-dirt/70 flex items-center gap-1">{item.location}</div>
+        <div className="text-xs text-dirt/70 flex items-center gap-1 mb-3">{item.location}</div>
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-full text-xs font-semibold text-water hover:text-water/80 flex items-center justify-center gap-1 py-1.5 border border-water/30 rounded-lg hover:bg-water/5 transition-colors"
+          type="button"
+        >
+          {open ? <><ChevronUp className="w-4 h-4" /> Hide details</> : <><ChevronDown className="w-4 h-4" /> Show details</>}
+        </button>
+        {open && (
+          <div className="mt-3 space-y-2 text-xs border-t border-dirt/10 pt-3">
+            <p><strong className="text-dirt/70">Sell Price:</strong> {item.sellPrice.toLocaleString("en-US")} Gold</p>
+            <p><strong className="text-dirt/70">Museum Value:</strong> {item.museumValue}</p>
+            <p><strong className="text-dirt/70">Reason:</strong> {item.keepReason}</p>
+            <p><strong className="text-dirt/70">Confidence:</strong> <ConfidenceBadge label={item.confidence} /></p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -178,9 +248,9 @@ export function YouTube({ videoId, title }: { videoId: string; title: string }) 
 export function ResourceCards() {
   const cards = [
     { href: "/codes/", icon: "ticket", title: "Active Codes", desc: "See every active Dig & Clean code, plus where to watch for the next drop." },
-    { href: "/shovels/", icon: "shovel", title: "Best Shovels", desc: "Compare shovels by speed, power, and price. Find the right pick for your stage." },
+    { href: "/shovels/", icon: "shovel", title: "Best Shovels", desc: "Compare shovels by power, walk speed, and price. Find the right pick for your stage." },
     { href: "/farming/", icon: "coins", title: "Money Farming", desc: "The best spots and loops to make money fast, no matter your shovel level." },
-    { href: "/beginner-guide/", icon: "book", title: "Beginner Guide", desc: "New to Dig & Clean? Learn the controls, the loop, and what to focus on first." },
+    { href: "/beginner/", icon: "book", title: "Beginner Guide", desc: "New to Dig & Clean? Learn the controls, the loop, and what to focus on first." },
   ];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -241,7 +311,7 @@ function StepIcon({ name }: { name: string }) {
 export function FAQ() {
   const faqs = [
     { q: "Is this an official Dig & Clean wiki?", a: "No. This is an unofficial fan site made by players, for players. We are not affiliated with Roblox Corporation or the Dig & Clean developers." },
-    { q: "What is the best shovel in Dig & Clean?", a: "The best shovel depends on your stage and budget. Early players should focus on affordable options with decent power, while late-game players can invest in higher power shovels like Cobalt or Titanium. Check our Shovels page for stage-by-stage picks." },
+    { q: "What is the best shovel in Dig & Clean?", a: "The best shovel depends on your stage and budget. Early players should focus on affordable options with decent power, while late-game players can invest in higher power shovels like Ruby, Carbon, or Diamond. Check our Shovels page for stage-by-stage picks." },
     { q: "How do I redeem Dig & Clean codes?", a: "Open the game, look for the codes button or menu, enter the code exactly as shown, and confirm. Visit our Codes page for the latest active codes and step-by-step help." },
     { q: "Should I sell or keep my items?", a: "Keep rare, epic, and legendary items for your museum display. Sell common junk and duplicates to fund your next shovel upgrade." },
     { q: "How often is this site updated?", a: "We check active codes daily. Items, shovels, and game stats are updated after major game updates or at least weekly." },
@@ -272,6 +342,21 @@ export function FAQ() {
             <h4 className="font-headline font-bold text-lg text-dirt mb-2">{f.q}</h4>
             <p className="text-sm text-dirt/80">{f.a}</p>
           </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function RelatedLinks({ links }: { links: { href: string; label: string }[] }) {
+  return (
+    <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
+      <h3 className="font-headline font-bold text-xl text-dirt mb-4">Related Pages</h3>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {links.map((l) => (
+          <a key={l.href} href={l.href} className="bg-white/50 rounded-xl p-3 border border-dirt/10 hover:border-water/50 hover:-translate-y-0.5 transition-all text-center text-sm font-semibold text-dirt">
+            {l.label}
+          </a>
         ))}
       </div>
     </div>
