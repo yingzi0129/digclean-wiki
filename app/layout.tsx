@@ -97,6 +97,16 @@ function Footer() {
           <a href="/cookie-policy/" className="hover:text-water transition-colors">Cookie Policy</a>
           <a href="https://www.roblox.com/games/83038462357724/Dig-Clean" target="_blank" rel="noopener noreferrer" className="hover:text-water transition-colors">Roblox Game Page</a>
         </div>
+        <a
+          href="mailto:support@digclean-wiki.wiki"
+          className="inline-flex items-center gap-2 mt-5 bg-water text-white font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-water/90 transition-colors shadow-sm"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          support@digclean-wiki.wiki
+        </a>
         <p className="text-sm text-dirt/70 mt-4 max-w-xl mx-auto leading-relaxed">
           Unofficial fan site. Not affiliated with Roblox Corporation or the Dig & Clean developers. Roblox and Dig & Clean are trademarks of their respective owners.
         </p>

@@ -1,11 +1,13 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { ArrowRight, Search, Ticket, Shovel } from "lucide-react";
 import { ItemDatabase, YouTube, HowToPlay, FAQ } from "@/components";
 import itemsData from "@/data/items.json";
 import { JsonLd, websiteSchema, videoGameSchema, organizationSchema } from "@/components/JsonLd";
 import { HeroTools } from "@/components/hero-tools";
 import { ProblemCards } from "@/components/problem-cards";
 import { ResourceCards } from "@/components/resource-cards";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Dig & Clean Wiki — Item Database, Codes & Best Gear",
@@ -25,23 +27,55 @@ export default function Home() {
       <JsonLd data={videoGameSchema} />
       <JsonLd data={organizationSchema} />
 
-      <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-        <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
+      <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex-1 space-y-6 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 bg-white/70 px-4 py-1.5 rounded-full border border-dirt/10 shadow-sm text-sm font-semibold text-dirt/80">
+            <span className="w-2 h-2 rounded-full bg-status-keep" />
+            Updated August 2026
+          </div>
           <h1 className="font-headline font-extrabold text-4xl md:text-5xl lg:text-6xl text-dirt leading-tight tracking-tight">
-            Dig & Clean Wiki — Your Toolbox for Items, Codes & Shovels
+            Dig & Clean Wiki
           </h1>
-          <p className="text-lg md:text-xl text-dirt/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            No more scrolling through long articles. Search items, check active codes, and find your next shovel upgrade in one place.
+          <p className="text-2xl md:text-3xl font-headline font-bold text-water">
+            Items, Codes & Best Shovels
           </p>
-          <p className="text-xs text-dirt/60">This is an unofficial fan site. Not affiliated with Roblox or Dig & Clean.</p>
+          <p className="text-lg md:text-xl text-dirt/80 leading-relaxed max-w-xl mx-auto lg:mx-0">
+            No more scrolling through long articles. Find item values, active codes, and your next shovel upgrade in one place.
+          </p>
+          <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+            <span className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 px-3 py-1.5 rounded-full border border-dirt/10">
+              <Search className="w-4 h-4 text-water" /> Search items
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 px-3 py-1.5 rounded-full border border-dirt/10">
+              <Ticket className="w-4 h-4 text-water" /> Check codes
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 px-3 py-1.5 rounded-full border border-dirt/10">
+              <Shovel className="w-4 h-4 text-water" /> Find shovels
+            </span>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <Link
+              href="/items/"
+              className="inline-flex items-center gap-2 bg-water text-white font-semibold text-base px-7 py-3 rounded-xl hover:bg-water/90 transition-colors shadow-sm"
+            >
+              Open Item Database <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/codes/"
+              className="inline-flex items-center gap-2 bg-white border border-dirt/20 text-dirt font-semibold text-base px-7 py-3 rounded-xl hover:border-water/50 transition-colors"
+            >
+              Check Codes
+            </Link>
+          </div>
+          <p className="text-xs text-dirt/50 pt-2">This is an unofficial fan site. Not affiliated with Roblox or Dig & Clean.</p>
         </div>
-        <div className="flex-1 w-full relative group">
-          <div className="absolute inset-0 bg-gold/20 blur-3xl rounded-full group-hover:bg-water/20 transition-colors duration-500"></div>
+        <div className="flex-1 w-full max-w-md lg:max-w-none mx-auto relative">
+          <div className="absolute inset-0 bg-water/10 blur-3xl rounded-full" />
           <Image
             src="/hero.jpg"
-            alt="Dig & Clean game scene showing a spray bottle washing a blue gem on sandy ground"
-            width={800}
-            height={600}
+            alt="Dig & Clean game scene: a spray bottle washing a blue diamond embedded in a rock"
+            width={600}
+            height={450}
             className="relative w-full h-auto rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-300"
             priority
           />

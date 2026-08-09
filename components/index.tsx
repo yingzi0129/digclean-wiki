@@ -245,7 +245,7 @@ export function YouTube({ videoId, title }: { videoId: string; title: string }) 
   );
 }
 
-export function YouTube({ videoId, title }: { videoId: string; title: string }) {
+export function HowToPlay() {
   const steps = [
     { icon: "radar", title: "Detect", text: "Use your detector to find buried items under the sand." },
     { icon: "dig", title: "Dig", text: "Equip a shovel and dig where the signal is strongest." },

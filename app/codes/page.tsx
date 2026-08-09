@@ -3,7 +3,7 @@ import type { CodeRow } from "@/types";
 import codesData from "@/data/codes.json";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedLinks } from "@/components";
-import { CheckCircle, AlertTriangle, Search, RefreshCw, ExternalLink } from "lucide-react";
+import { CheckCircle, AlertTriangle, Search, RefreshCw, ExternalLink, Coins } from "lucide-react";
 
 const related = [
   { href: "/items/", label: "Item Database" },
@@ -120,7 +120,7 @@ export default function CodesPage() {
       <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">
         <h2 className="font-headline font-bold text-2xl text-dirt mb-4">Why Are There No Active Codes Right Now?</h2>
         <p className="text-dirt/80 leading-relaxed mb-4">
-          Dig & Clean is still in its early release period. Many Roblox simulation games launch without a public code-redemption system and add it after the first major update, a visits milestone, or a holiday event. The Squeaky Clean! developers have not yet published a code menu or announced a code campaign, so any code claiming to be "active" right now is unverified.
+          Dig & Clean is still in its early release period. Many Roblox simulation games launch without a public code-redemption system and add it after the first major update, a visits milestone, or a holiday event. The Squeaky Clean! developers have not yet published a code menu or announced a code campaign, so any code claiming to be &quot;active&quot; right now is unverified.
         </p>
         <p className="text-dirt/80 leading-relaxed">
           We check the official sources listed below regularly. As soon as a working code is confirmed, we add it to the active table with the exact reward and the date it was verified. Expired codes are moved to the expired list so you can see what used to work.
