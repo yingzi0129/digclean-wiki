@@ -33,6 +33,23 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* Privacy-friendly analytics by Plausible — DO NOT REMOVE OR EDIT */}
+        <script async src="https://plausible.shipsolo.io/js/pa-afrjKs3Jsu6TvGq-PQpdU.js"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.plausible = window.plausible || function() {
+                (plausible.q = plausible.q || []).push(arguments);
+              };
+              plausible.init = plausible.init || function(i) {
+                plausible.o = i || {};
+              };
+              plausible.init();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col">
         <TopNav />
         <main className="flex-1">{children}</main>
