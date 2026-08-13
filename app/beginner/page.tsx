@@ -40,20 +40,20 @@ const howToSchema = {
     {
       "@type": "HowToStep",
       position: 3,
-      name: "Clean the item",
-      text: "Carry the dirty item to a Workstation and spray it clean. Rarity is only revealed after cleaning.",
+      name: "Clean the find",
+      text: "Carry the dirty item to a cleaning station and spray it until the real item is revealed. Rarity affects whether to keep or sell.",
     },
     {
       "@type": "HowToStep",
       position: 4,
       name: "Display or sell",
-      text: "Keep rare items for your museum to earn passive visitor income. Sell junk and duplicates for coins.",
+      text: "Keep rare, epic, and legendary items for your museum display. Sell junk and common duplicates to fund upgrades.",
     },
     {
       "@type": "HowToStep",
       position: 5,
-      name: "Upgrade your gear",
-      text: "Reinvest coins into a better shovel, then detector, then spray bottle. Save for Shipwreck Cove after maxing starter gear.",
+      name: "Upgrade smartly",
+      text: "Prioritize shovel power first, then detector luck, then spray speed. Use our Shovels and Items pages to plan your next purchase.",
     },
   ],
 };

@@ -8,17 +8,18 @@ import { HeroTools } from "@/components/hero-tools";
 import { ProblemCards } from "@/components/problem-cards";
 import { ResourceCards } from "@/components/resource-cards";
 import Link from "next/link";
+import statsData from "@/data/stats.json";
 
 const quickPaths = [
-  { href: "/beginner/", icon: BookOpen, label: "I'm new" },
-  { href: "/farming/", icon: Coins, label: "I want money" },
-  { href: "/shovels/", icon: Shovel, label: "Best gear" },
-  { href: "/codes/", icon: Ticket, label: "Active codes" },
-  { href: "/rare-items/", icon: Gem, label: "Rare items" },
+  { href: "/beginner/", icon: BookOpen, label: "Beginner Guide" },
+  { href: "/farming/", icon: Coins, label: "Money Farming" },
+  { href: "/shovels/", icon: Shovel, label: "Best Shovels" },
+  { href: "/codes/", icon: Ticket, label: "Active Codes" },
+  { href: "/rare-items/", icon: Gem, label: "Rare Items" },
 ];
 
 const latestUpdates = [
-  { title: "Codes checked: no active codes", date: "Aug 9, 2026", href: "/codes/" },
+  { title: "Update 1 live: 2 active codes available", date: "Aug 13, 2026", href: "/codes/" },
   { title: "Item database refreshed for August 2026", date: "Aug 9, 2026", href: "/items/" },
   { title: "Farming guide expanded to 1,333 words", date: "Aug 9, 2026", href: "/farming/" },
   { title: "New Cleaning and Sprays sections live", date: "Aug 9, 2026", href: "/cleaning/" },
@@ -59,15 +60,24 @@ export default function Home() {
             No more scrolling through long articles. Find item values, active codes, and your next shovel upgrade in one place.
           </p>
           <div className="flex flex-wrap justify-center lg:justify-start gap-3">
-            <span className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 px-3 py-1.5 rounded-full border border-dirt/10">
+            <Link
+              href="/items/"
+              className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 hover:bg-white px-3 py-1.5 rounded-full border border-dirt/10 hover:border-water/30 transition-colors"
+            >
               <Search className="w-4 h-4 text-water" /> Search items
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 px-3 py-1.5 rounded-full border border-dirt/10">
-              <Ticket className="w-4 h-4 text-water" /> Check codes
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 px-3 py-1.5 rounded-full border border-dirt/10">
-              <Shovel className="w-4 h-4 text-water" /> Find shovels
-            </span>
+            </Link>
+            <Link
+              href="/codes/"
+              className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 hover:bg-white px-3 py-1.5 rounded-full border border-dirt/10 hover:border-water/30 transition-colors"
+            >
+              <Ticket className="w-4 h-4 text-water" /> Active codes
+            </Link>
+            <Link
+              href="/shovels/"
+              className="inline-flex items-center gap-1.5 text-sm text-dirt/70 bg-white/60 hover:bg-white px-3 py-1.5 rounded-full border border-dirt/10 hover:border-water/30 transition-colors"
+            >
+              <Shovel className="w-4 h-4 text-water" /> Best shovels
+            </Link>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
             <Link
@@ -160,22 +170,22 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 divide-x-0 md:divide-x-2 divide-y-2 md:divide-y-0 divide-dirt/10">
           <div className="text-center pt-4 md:pt-0">
             <p className="font-body text-xs uppercase tracking-widest text-dirt/60 mb-1">Active Players</p>
-            <p className="font-headline font-bold text-3xl text-gold">10K-22K</p>
+            <p className="font-headline font-bold text-3xl text-gold">{statsData.ccu}</p>
           </div>
           <div className="text-center pt-4 md:pt-0">
             <p className="font-body text-xs uppercase tracking-widest text-dirt/60 mb-1">Total Visits</p>
-            <p className="font-headline font-bold text-3xl text-dirt">2.5M+</p>
+            <p className="font-headline font-bold text-3xl text-dirt">{statsData.visits}</p>
           </div>
           <div className="text-center pt-4 md:pt-0">
             <p className="font-body text-xs uppercase tracking-widest text-dirt/60 mb-1">Rating</p>
-            <p className="font-headline font-bold text-3xl text-dirt">93.6%</p>
+            <p className="font-headline font-bold text-3xl text-dirt">{statsData.rating}</p>
           </div>
           <div className="text-center pt-4 md:pt-0">
             <p className="font-body text-xs uppercase tracking-widest text-dirt/60 mb-1">Favorites</p>
-            <p className="font-headline font-bold text-3xl text-dirt">1.2M</p>
+            <p className="font-headline font-bold text-3xl text-dirt">{statsData.favorites}</p>
           </div>
         </div>
-        <p className="text-center text-xs text-dirt/50 mt-4">Stats checked regularly from public Roblox game data.</p>
+        <p className="text-center text-xs text-dirt/50 mt-4">{statsData.source}</p>
       </section>
 
       <section className="space-y-6 flex flex-col items-center">

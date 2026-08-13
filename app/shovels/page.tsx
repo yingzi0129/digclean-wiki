@@ -1,7 +1,8 @@
 import { Metadata } from "next";
-import type { Shovel, Detector, Spray } from "@/types";
+import type { Shovel, Detector, Spray, Item } from "@/types";
 import { LastUpdated, RelatedLinks } from "@/components";
 import shovelsData from "@/data/shovels.json";
+import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
 
 const related = [
@@ -127,7 +128,7 @@ export default function ShovelsPage() {
                 <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Power</th>
                 <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Walk Speed</th>
                 <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Price</th>
-                <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Best For</th>
+                <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Best For / Related Items</th>
                 <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Confidence</th>
               </tr>
             </thead>
@@ -138,7 +139,27 @@ export default function ShovelsPage() {
                   <td className="p-4 text-dirt/80">{s.power}</td>
                   <td className="p-4 text-dirt/80">{s.walkSpeed}%</td>
                   <td className="p-4 font-headline font-bold text-gold">{s.price.toLocaleString("en-US")}</td>
-                  <td className="p-4 text-dirt/80">{s.bestFor}</td>
+                  <td className="p-4 text-dirt/80">
+                    <p>{s.bestFor}</p>
+                    {s.items && (
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {s.items.map((name) => {
+                          const item = itemsData.items.find((i: Item) => i.name === name);
+                          return item ? (
+                            <a
+                              key={name}
+                              href={`/items/${item.id}/`}
+                              className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-water/10 text-water hover:bg-water/20 transition-colors"
+                            >
+                              {name}
+                            </a>
+                          ) : (
+                            <span key={name} className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-dirt/10 text-dirt/70">{name}</span>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </td>
                   <td className="p-4 text-xs text-dirt/60">{s.confidence}</td>
                 </tr>
               ))}

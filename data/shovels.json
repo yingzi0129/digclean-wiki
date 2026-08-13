@@ -34,6 +34,8 @@
       "walkSpeed": 0,
       "price": 0,
       "bestFor": "Beginners — free starter",
+      "location": "Starter Beach",
+      "items": ["Plastic Bottle", "Old Can", "Broken Flip-Flop"],
       "confidence": "Official"
     },
     {
@@ -42,6 +44,8 @@
       "walkSpeed": 5,
       "price": 500,
       "bestFor": "First upgrade from beach junk",
+      "location": "Starter Beach",
+      "items": ["Seashell", "Sand Dollar", "Starfish"],
       "confidence": "Community estimate"
     },
     {
@@ -50,6 +54,8 @@
       "walkSpeed": 10,
       "price": 1600,
       "bestFor": "Early farming",
+      "location": "Starter Beach",
+      "items": ["Seashell", "Sand Dollar", "Message in a Bottle"],
       "confidence": "Community estimate"
     },
     {
@@ -58,6 +64,8 @@
       "walkSpeed": 15,
       "price": 9000,
       "bestFor": "Mid starter island",
+      "location": "Starter Beach",
+      "items": ["Message in a Bottle", "Rusty Anchor"],
       "confidence": "Community estimate"
     },
     {
@@ -66,6 +74,8 @@
       "walkSpeed": 20,
       "price": 45000,
       "bestFor": "Rare item hunting on starter island",
+      "location": "Starter Beach",
+      "items": ["Rusty Anchor", "Gold Coin"],
       "confidence": "Community estimate"
     },
     {
@@ -74,6 +84,8 @@
       "walkSpeed": 25,
       "price": 190000,
       "bestFor": "Best starter-island shovel target",
+      "location": "Starter Beach",
+      "items": ["Rusty Anchor", "Gold Coin", "Silver Goblet"],
       "confidence": "Community estimate"
     },
     {
@@ -82,6 +94,8 @@
       "walkSpeed": 30,
       "price": 390000,
       "bestFor": "Shipwreck Cove entry",
+      "location": "Shipwreck Cove",
+      "items": ["Gold Coin", "Silver Goblet"],
       "confidence": "Community estimate"
     },
     {
@@ -90,6 +104,8 @@
       "walkSpeed": 35,
       "price": 650000,
       "bestFor": "Mid Shipwreck Cove legendary spots",
+      "location": "Shipwreck Cove",
+      "items": ["Silver Goblet", "Ancient Vase", "Pirate Cutlass"],
       "confidence": "Community estimate"
     },
     {
@@ -98,6 +114,8 @@
       "walkSpeed": 40,
       "price": 1300000,
       "bestFor": "Late Shipwreck Cove",
+      "location": "Shipwreck Cove",
+      "items": ["Ancient Vase", "Pirate Cutlass", "Mermaid's Tear"],
       "confidence": "Community estimate"
     },
     {
@@ -106,6 +124,8 @@
       "walkSpeed": 45,
       "price": 2900000,
       "bestFor": "Endgame legendary farming",
+      "location": "Shipwreck Cove",
+      "items": ["Pirate Cutlass", "Mermaid's Tear", "Golden Chalice"],
       "confidence": "Community estimate"
     },
     {
@@ -114,6 +134,8 @@
       "walkSpeed": 50,
       "price": 9200000,
       "bestFor": "Maximum endgame power",
+      "location": "Shipwreck Cove",
+      "items": ["Mermaid's Tear", "Golden Chalice"],
       "confidence": "Community estimate"
     }
   ],

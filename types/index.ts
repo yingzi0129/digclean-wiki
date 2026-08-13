@@ -18,6 +18,8 @@ export interface Shovel {
   walkSpeed: number;
   price: number;
   bestFor: string;
+  location?: string;
+  items?: string[];
   confidence: string;
 }
 
@@ -42,7 +44,9 @@ export interface Spray {
 export interface CodeRow {
   code: string;
   reward: string;
-  status?: "active" | "expired";
+  status?: string;
+  verified?: string;
+  source?: string;
 }
 
 export interface CodeData {

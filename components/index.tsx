@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, Fragment } from "react";
+import Link from "next/link";
 import { Search, ChevronDown, ChevronUp } from "lucide-react";
 import type { Item } from "@/types";
 import { JsonLd } from "./JsonLd";
@@ -74,7 +75,11 @@ export function ItemTable({ items }: { items: Item[] }) {
           {items.map((item, idx) => (
             <Fragment key={item.id}>
               <tr className={`hover:bg-dirt/5 transition-colors ${idx % 2 === 1 ? "bg-white/30" : ""}`}>
-                <td className="p-4 font-medium text-dirt">{item.name}</td>
+                <td className="p-4 font-medium text-dirt">
+                  <Link href={`/items/${item.id}/`} className="hover:text-water hover:underline">
+                    {item.name}
+                  </Link>
+                </td>
                 <td className="p-4"><RarityBadge rarity={item.rarity} /></td>
                 <td className="p-4 font-headline text-right font-bold text-gold">{item.value.toLocaleString("en-US")}</td>
                 <td className="p-4 text-center"><RecBadge rec={item.recommendation} /></td>
@@ -123,15 +128,17 @@ export function ItemCard({ item }: { item: Item }) {
     <div className="bg-foam rounded-xl p-4 border border-dirt/20 card-shadow hover:-translate-y-1 transition-transform cursor-pointer relative overflow-hidden group">
       <div className={`absolute top-0 right-0 w-16 h-16 rounded-bl-full z-0 opacity-30 bg-rarity-${item.rarity.toLowerCase()}`}></div>
       <div className="relative z-10">
-        <div className="flex justify-between items-start mb-3">
-          <h3 className="font-headline font-bold text-lg text-dirt">{item.name}</h3>
-          <RarityBadge rarity={item.rarity} />
-        </div>
-        <div className="flex items-center gap-3 text-sm mb-2">
-          <span className="text-gold font-bold flex items-center gap-1">${item.value.toLocaleString("en-US")}</span>
-          <RecBadge rec={item.recommendation} />
-        </div>
-        <div className="text-xs text-dirt/70 flex items-center gap-1 mb-3">{item.location}</div>
+        <Link href={`/items/${item.id}/`} className="block">
+          <div className="flex justify-between items-start mb-3">
+            <h3 className="font-headline font-bold text-lg text-dirt group-hover:text-water transition-colors">{item.name}</h3>
+            <RarityBadge rarity={item.rarity} />
+          </div>
+          <div className="flex items-center gap-3 text-sm mb-2">
+            <span className="text-gold font-bold flex items-center gap-1">${item.value.toLocaleString("en-US")}</span>
+            <RecBadge rec={item.recommendation} />
+          </div>
+          <div className="text-xs text-dirt/70 flex items-center gap-1 mb-3">{item.location}</div>
+        </Link>
         <button
           onClick={() => setOpen(!open)}
           className="w-full text-xs font-semibold text-water hover:text-water/80 flex items-center justify-center gap-1 py-1.5 border border-water/30 rounded-lg hover:bg-water/5 transition-colors"

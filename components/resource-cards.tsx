@@ -1,11 +1,11 @@
 "use client";
 
-import { BookOpen, Coins, Ticket, Shovel } from "lucide-react";
+import { BookOpen, Search, Ticket, Shovel } from "lucide-react";
 
 const cards = [
+  { href: "/items/", icon: Search, title: "Item Database", desc: "Search every Dig & Clean item by rarity, value, and keep-or-sell advice." },
   { href: "/codes/", icon: Ticket, title: "Active Codes", desc: "See every active Dig & Clean code, plus where to watch for the next drop." },
   { href: "/shovels/", icon: Shovel, title: "Best Shovels", desc: "Compare shovels by power, walk speed, and price. Find the right pick for your stage." },
-  { href: "/farming/", icon: Coins, title: "Money Farming", desc: "The best spots and loops to make money fast, no matter your shovel level." },
   { href: "/beginner/", icon: BookOpen, title: "Beginner Guide", desc: "New to Dig & Clean? Learn the controls, the loop, and what to focus on first." },
 ];
 

@@ -26,10 +26,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://digclean-wiki.wiki/items/" },
 };
 
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Dig & Clean Item Database",
+  itemListElement: itemsData.items.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    url: `https://digclean-wiki.wiki/items/${item.id}/`,
+    name: item.name,
+  })),
+};
+
 export default function ItemsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={itemListSchema} />
 
       <div className="max-w-3xl">
         <h1 className="font-headline font-extrabold text-4xl md:text-5xl text-dirt leading-tight">
