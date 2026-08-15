@@ -2,7 +2,8 @@
 
 import { useMemo, useState, Fragment } from "react";
 import Link from "next/link";
-import { Search, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import type { Item } from "@/types";
 import { JsonLd } from "./JsonLd";
 
@@ -55,6 +56,7 @@ function ItemDetail({ label, children }: { label: string; children: React.ReactN
 
 export function ItemTable({ items }: { items: Item[] }) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const router = useRouter();
 
   const toggle = (id: string) => setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
 
@@ -68,15 +70,22 @@ export function ItemTable({ items }: { items: Item[] }) {
             <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold text-right">Value</th>
             <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold text-center">Recommendation</th>
             <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold">Location</th>
-            <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold text-center">Details</th>
+            <th className="p-4 font-body text-xs uppercase tracking-widest text-dirt/60 font-semibold text-center">View</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-dirt/5">
           {items.map((item, idx) => (
             <Fragment key={item.id}>
-              <tr className={`hover:bg-dirt/5 transition-colors ${idx % 2 === 1 ? "bg-white/30" : ""}`}>
+              <tr
+                onClick={() => router.push(`/items/${item.id}/`)}
+                className={`group cursor-pointer transition-colors hover:bg-water/10 hover:shadow-sm ${idx % 2 === 1 ? "bg-white/30" : ""}`}
+              >
                 <td className="p-4 font-medium text-dirt">
-                  <Link href={`/items/${item.id}/`} className="hover:text-water hover:underline">
+                  <Link
+                    href={`/items/${item.id}/`}
+                    className="group-hover:text-water group-hover:underline underline-offset-2"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     {item.name}
                   </Link>
                 </td>
@@ -85,19 +94,29 @@ export function ItemTable({ items }: { items: Item[] }) {
                 <td className="p-4 text-center"><RecBadge rec={item.recommendation} /></td>
                 <td className="p-4 text-sm text-dirt/80">{item.location}</td>
                 <td className="p-4 text-center">
-                  <button
-                    onClick={() => toggle(item.id)}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-water hover:text-water/80 transition-colors"
-                    type="button"
-                    aria-expanded={expanded[item.id]}
-                    aria-controls={`details-${item.id}`}
-                  >
-                    {expanded[item.id] ? (
-                      <><ChevronUp className="w-4 h-4" /> Less</>
-                    ) : (
-                      <><ChevronDown className="w-4 h-4" /> More</>
-                    )}
-                  </button>
+                  <div className="flex items-center justify-center gap-2">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); toggle(item.id); }}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-water hover:text-water/80 transition-colors"
+                      type="button"
+                      aria-expanded={expanded[item.id]}
+                      aria-controls={`details-${item.id}`}
+                    >
+                      {expanded[item.id] ? (
+                        <><ChevronUp className="w-4 h-4" /> Less</>
+                      ) : (
+                        <><ChevronDown className="w-4 h-4" /> More</>
+                      )}
+                    </button>
+                    <Link
+                      href={`/items/${item.id}/`}
+                      className="text-dirt/40 hover:text-water transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                      aria-hidden="true"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </Link>
+                  </div>
                 </td>
               </tr>
               {expanded[item.id] && (
