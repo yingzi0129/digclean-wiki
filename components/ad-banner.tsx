@@ -8,45 +8,56 @@ interface AdBannerProps {
 
 export function AdBanner({ className = "" }: AdBannerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isClient, setIsClient] = useState(false);
+  const [filled, setFilled] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setIsClient(true);
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    // Avoid duplicate script injection; the script idempotency is handled by Adsterra,
-    // but we guard against React Strict Mode double-mount in development.
-    const id = "adsterra-invoke-script";
-    if (document.getElementById(id)) return;
+    const zoneId = "321bd7da56b6c32afe1e52eae178c833";
+    const scriptId = `adsterra-${zoneId}`;
 
-    const script = document.createElement("script");
-    script.id = id;
-    script.async = true;
-    script.setAttribute("data-cfasync", "false");
-    script.src = "https://pl30873520.effectivecpmnetwork.com/321bd7da56b6c32afe1e52eae178c833/invoke.js";
+    // Do not inject twice on the same page.
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
+      script.id = scriptId;
+      script.async = true;
+      script.setAttribute("data-cfasync", "false");
+      script.src = `https://pl30873520.effectivecpmnetwork.com/${zoneId}/invoke.js`;
+      script.onerror = () => {
+        setError("Ad script failed to load. Ad blocker or network issue.");
+      };
+      // Append to the specific container; Adsterra will look for the sibling container div.
+      container.parentElement?.insertBefore(script, container);
+    }
 
-    script.onerror = () => {
-      // eslint-disable-next-line no-console
-      console.warn("Adsterra script failed to load");
+    const checkFilled = () => {
+      const hasContent =
+        container.querySelector("iframe, img, a, .native-ad") !== null ||
+        container.childNodes.length > (script?.parentElement === container.parentElement ? 0 : 0);
+      if (hasContent) setFilled(true);
     };
 
-    containerRef.current.appendChild(script);
-  }, []);
+    const observer = new MutationObserver(checkFilled);
+    observer.observe(container, { childList: true, subtree: true });
 
-  if (!isClient) {
-    return (
-      <div
-        className={`w-full flex flex-col items-center justify-center min-h-[140px] py-5 ${className}`}
-        aria-label="Advertisement"
-        role="complementary"
-      >
-        <div className="text-xs uppercase tracking-wider text-dirt/50 font-semibold mb-2">Advertisement</div>
-        <div className="w-full max-w-[728px] min-h-[90px] bg-dirt/10 border border-dirt/20 border-dashed rounded-lg flex items-center justify-center">
-          <span className="text-sm text-dirt/40 font-medium">Loading advertisement…</span>
-        </div>
-      </div>
-    );
-  }
+    // Adsterra often fills within a few seconds; give it a generous window.
+    const timers = [
+      setTimeout(checkFilled, 1000),
+      setTimeout(checkFilled, 3000),
+      setTimeout(() => {
+        checkFilled();
+        observer.disconnect();
+      }, 12000),
+    ];
+
+    return () => {
+      timers.forEach(clearTimeout);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div
@@ -55,8 +66,18 @@ export function AdBanner({ className = "" }: AdBannerProps) {
       role="complementary"
     >
       <div className="text-xs uppercase tracking-wider text-dirt/50 font-semibold mb-2">Advertisement</div>
-      <div className="w-full max-w-[728px] min-h-[90px] bg-dirt/5 border border-dirt/10 rounded-lg">
+      <div className="w-full max-w-[728px] min-h-[90px] bg-dirt/5 border border-dirt/10 rounded-lg relative">
         <div ref={containerRef} id="container-321bd7da56b6c32afe1e52eae178c833" className="w-full flex justify-center" />
+        {!filled && !error && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-sm text-dirt/40 font-medium">Loading advertisement…</span>
+          </div>
+        )}
+        {error && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-sm text-red-500/70 font-medium">{error}</span>
+          </div>
+        )}
       </div>
     </div>
   );

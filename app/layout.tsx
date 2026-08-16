@@ -49,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+        <meta httpEquiv="Accept-CH" content="Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-UA-Model, Sec-CH-UA-Full-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform-Version" />
         {/* Microsoft Clarity heatmap & session recordings — DO NOT REMOVE OR EDIT */}
         <script
           type="text/javascript"
