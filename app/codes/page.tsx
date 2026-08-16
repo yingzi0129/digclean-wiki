@@ -3,6 +3,7 @@ import type { CodeRow } from "@/types";
 import codesData from "@/data/codes.json";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedLinks } from "@/components";
+import { AdBanner } from "@/components/ad-banner";
 import { CheckCircle, AlertTriangle, Search, RefreshCw, ExternalLink, Coins } from "lucide-react";
 
 const related = [
@@ -54,6 +55,7 @@ export const metadata: Metadata = {
 export default function CodesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
+      <AdBanner />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { RelatedLinks } from "@/components";
+import { AdBanner } from "@/components/ad-banner";
 import { JsonLd } from "@/components/JsonLd";
 
 const related = [
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
 export default function ControlsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
+      <AdBanner />
       <JsonLd data={breadcrumbSchema} />
 
       <div className="max-w-3xl">

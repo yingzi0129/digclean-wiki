@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import type { Shovel, Detector, Spray, Item } from "@/types";
 import { LastUpdated, RelatedLinks } from "@/components";
+import { AdBanner } from "@/components/ad-banner";
 import shovelsData from "@/data/shovels.json";
 import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
@@ -58,6 +59,7 @@ export const metadata: Metadata = {
 export default function ShovelsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
+      <AdBanner />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={howToSchema} />
 
