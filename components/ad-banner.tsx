@@ -36,24 +36,26 @@ export function AdBanner({ className = "" }: AdBannerProps) {
   if (!isClient) {
     return (
       <div
-        className={`w-full flex flex-col items-center justify-center min-h-[120px] py-4 ${className}`}
+        className={`w-full flex flex-col items-center justify-center min-h-[140px] py-5 ${className}`}
         aria-label="Advertisement"
         role="complementary"
       >
-        <div className="text-xs uppercase tracking-wider text-dirt/40 font-semibold mb-2">Advertisement</div>
-        <div className="w-full max-w-[728px] min-h-[90px] bg-dirt/5 rounded-lg" />
+        <div className="text-xs uppercase tracking-wider text-dirt/50 font-semibold mb-2">Advertisement</div>
+        <div className="w-full max-w-[728px] min-h-[90px] bg-dirt/10 border border-dirt/20 border-dashed rounded-lg flex items-center justify-center">
+          <span className="text-sm text-dirt/40 font-medium">Loading advertisement…</span>
+        </div>
       </div>
     );
   }
 
   return (
     <div
-      className={`w-full flex flex-col items-center justify-center min-h-[120px] py-4 ${className}`}
+      className={`w-full flex flex-col items-center justify-center min-h-[140px] py-5 ${className}`}
       aria-label="Advertisement"
       role="complementary"
     >
-      <div className="text-xs uppercase tracking-wider text-dirt/40 font-semibold mb-2">Advertisement</div>
-      <div className="w-full max-w-[728px] min-h-[90px]">
+      <div className="text-xs uppercase tracking-wider text-dirt/50 font-semibold mb-2">Advertisement</div>
+      <div className="w-full max-w-[728px] min-h-[90px] bg-dirt/5 border border-dirt/10 rounded-lg">
         <div ref={containerRef} id="container-321bd7da56b6c32afe1e52eae178c833" className="w-full flex justify-center" />
       </div>
     </div>
