@@ -7,6 +7,7 @@ import { JsonLd, websiteSchema, videoGameSchema, organizationSchema } from "@/co
 import { HeroTools } from "@/components/hero-tools";
 import { ProblemCards } from "@/components/problem-cards";
 import { ResourceCards } from "@/components/resource-cards";
+import { AdBanner } from "@/components/ad-banner";
 import Link from "next/link";
 import statsData from "@/data/stats.json";
 
@@ -109,6 +110,8 @@ export default function Home() {
       </section>
 
       <HeroTools />
+
+      <AdBanner />
 
       {/* 快速入口：按问题选工具 */}
       <section className="space-y-4">

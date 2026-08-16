@@ -5,6 +5,7 @@ import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
 import { RarityBadge, RecBadge, ConfidenceBadge } from "@/components";
 import { ArrowLeft, Shovel, MapPin, Coins, Landmark } from "lucide-react";
+import { AdBanner } from "@/components/ad-banner";
 
 interface ItemPageProps {
   params: { id: string };
@@ -111,6 +112,8 @@ export default function ItemDetailPage({ params }: ItemPageProps) {
           </div>
         </div>
       </div>
+
+      <AdBanner />
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-foam rounded-xl p-6 md:p-8 card-shadow border border-dirt/20">

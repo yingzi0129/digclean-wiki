@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ItemDatabase, LastUpdated, RelatedLinks } from "@/components";
 import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
+import { AdBanner } from "@/components/ad-banner";
 
 const related = [
   { href: "/shovels/", label: "Shovels" },
@@ -64,6 +65,8 @@ export default function ItemsPage() {
           <li>Click <strong>More</strong> on any row to reveal sell price, museum value, reason, and confidence label.</li>
         </ul>
       </div>
+
+      <AdBanner />
 
       <div className="bg-foam rounded-xl card-shadow border border-dirt/20 overflow-hidden flex flex-col">
         <ItemDatabase items={itemsData.items} />
