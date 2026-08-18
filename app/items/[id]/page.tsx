@@ -4,6 +4,7 @@ import Link from "next/link";
 import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
 import { RarityBadge, RecBadge, ConfidenceBadge } from "@/components";
+import { Breadcrumb } from "@/components/breadcrumb";
 import { ArrowLeft, Shovel, MapPin, Coins, Landmark } from "lucide-react";
 import { AdBanner } from "@/components/ad-banner";
 
@@ -72,6 +73,7 @@ export default function ItemDetailPage({ params }: ItemPageProps) {
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
       <JsonLd data={productSchema} />
       <JsonLd data={breadcrumbSchema} />
+      <Breadcrumb items={[{ label: "Items", href: "/items/" }, { label: item.name }]} />
 
       <Link
         href="/items/"

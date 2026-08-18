@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { ItemDatabase, LastUpdated, RelatedLinks } from "@/components";
+import { Breadcrumb } from "@/components/breadcrumb";
 import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
 import { AdBanner } from "@/components/ad-banner";
@@ -44,6 +45,8 @@ export default function ItemsPage() {
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={itemListSchema} />
+
+      <Breadcrumb items={[{ label: "Items" }]} />
 
       <div className="max-w-3xl">
         <h1 className="font-headline font-extrabold text-4xl md:text-5xl text-dirt leading-tight">

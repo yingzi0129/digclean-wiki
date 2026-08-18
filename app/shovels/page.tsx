@@ -1,10 +1,13 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import type { Shovel, Detector, Spray, Item } from "@/types";
 import { LastUpdated, RelatedLinks } from "@/components";
 import { AdBanner } from "@/components/ad-banner";
+import { Breadcrumb } from "@/components/breadcrumb";
 import shovelsData from "@/data/shovels.json";
 import itemsData from "@/data/items.json";
 import { JsonLd } from "@/components/JsonLd";
+import { slugify } from "@/lib/utils";
 
 const related = [
   { href: "/", label: "Home" },
@@ -62,6 +65,8 @@ export default function ShovelsPage() {
       <AdBanner />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={howToSchema} />
+
+      <Breadcrumb items={[{ label: "Shovels" }]} />
 
       <div className="max-w-3xl">
         <h1 className="font-headline font-extrabold text-4xl md:text-5xl text-dirt leading-tight">
@@ -137,7 +142,11 @@ export default function ShovelsPage() {
             <tbody className="divide-y divide-dirt/5">
               {shovelsData.shovels.map((s: Shovel) => (
                 <tr key={s.name}>
-                  <td className="p-4 font-medium text-dirt">{s.name}</td>
+                  <td className="p-4 font-medium text-dirt">
+                    <Link href={`/shovels/${slugify(s.name)}/`} className="text-water hover:underline font-headline font-bold">
+                      {s.name}
+                    </Link>
+                  </td>
                   <td className="p-4 text-dirt/80">{s.power}</td>
                   <td className="p-4 text-dirt/80">{s.walkSpeed}%</td>
                   <td className="p-4 font-headline font-bold text-gold">{s.price.toLocaleString("en-US")}</td>

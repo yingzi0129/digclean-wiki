@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { RelatedLinks } from "@/components";
-import { AdBanner } from "@/components/ad-banner";
+import { Breadcrumb } from "@/components/breadcrumb";
 import { JsonLd } from "@/components/JsonLd";
+import { AdBanner } from "@/components/ad-banner";
 
 const related = [
   { href: "/", label: "Home" },
@@ -31,6 +32,8 @@ export default function RareItemsPage() {
     <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-12 py-12 flex flex-col gap-8">
       <AdBanner />
       <JsonLd data={breadcrumbSchema} />
+
+      <Breadcrumb items={[{ label: "Rare Items" }]} />
 
       <div className="max-w-3xl">
         <h1 className="font-headline font-extrabold text-4xl md:text-5xl text-dirt leading-tight">

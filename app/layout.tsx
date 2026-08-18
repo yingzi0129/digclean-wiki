@@ -76,12 +76,15 @@ function TopNav() {
     { href: "/", label: "Home" },
     { href: "/items/", label: "Items" },
     { href: "/codes/", label: "Codes" },
+    { href: "/detectors/", label: "Detectors" },
     { href: "/shovels/", label: "Shovels" },
     { href: "/sprays/", label: "Sprays" },
     { href: "/farming/", label: "Farming" },
     { href: "/cleaning/", label: "Cleaning" },
     { href: "/museum/", label: "Museum" },
     { href: "/beginner/", label: "Beginner" },
+    { href: "/rare-items/", label: "Rare Items" },
+    { href: "/faq/", label: "FAQ" },
     { href: "/updates/", label: "Updates" },
   ];
   return (

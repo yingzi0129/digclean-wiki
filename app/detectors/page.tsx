@@ -1,7 +1,10 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { LastUpdated, RelatedLinks } from "@/components";
 import { AdBanner } from "@/components/ad-banner";
+import { Breadcrumb } from "@/components/breadcrumb";
 import shovelsData from "@/data/shovels.json";
+import { slugify } from "@/lib/utils";
 import { JsonLd } from "@/components/JsonLd";
 
 const related = [
@@ -61,6 +64,8 @@ export default function DetectorsPage() {
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={howToSchema} />
 
+      <Breadcrumb items={[{ label: "Detectors" }]} />
+
       <div className="max-w-3xl">
         <h1 className="font-headline font-extrabold text-4xl md:text-5xl text-dirt leading-tight">
           Dig & Clean Best Detector Upgrades
@@ -104,7 +109,11 @@ export default function DetectorsPage() {
             <tbody className="divide-y divide-dirt/5">
               {shovelsData.detectors.map((d) => (
                 <tr key={d.name}>
-                  <td className="p-4 font-medium text-dirt">{d.name}</td>
+                  <td className="p-4 font-medium text-dirt">
+                    <Link href={`/detectors/${slugify(d.name)}/`} className="text-water hover:underline font-headline font-bold">
+                      {d.name}
+                    </Link>
+                  </td>
                   <td className="p-4 text-dirt/80">{d.luck}</td>
                   <td className="p-4 text-dirt/80">{d.range}</td>
                   <td className="p-4 font-headline font-bold text-gold">{d.price.toLocaleString("en-US")}</td>
